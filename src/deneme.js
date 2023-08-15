@@ -1,6 +1,11 @@
+
+import BuyPage from "./Pages/BuyPage";
 const Deneme = () => {
     return (  
-        <p>denemenin içindeeeeeee</p>
+        <div>
+        
+        <BuyPage/>
+        </div>
     );
 }
  
