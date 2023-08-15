@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Dropdown from '../Components/Dropdown'
+import Dropdown from '../components/Dropdown'
 
 function BuyPage () {
     return(
