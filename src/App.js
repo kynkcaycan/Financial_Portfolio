@@ -22,8 +22,6 @@ function App() {
 
      <Typography variant='h1'>My Portfolio</Typography>
     <Router>
-     
-    
 
         <div className="middleBox">
          
@@ -36,6 +34,11 @@ function App() {
               <Route path="/buy">
                 <BuyPage/>
               </Route>
+
+              <Route path="/sell">
+                <BuyPage/>
+              </Route>
+
 
             </Switch>         
         </div>
