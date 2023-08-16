@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import './Dropdown.css'
+import { Button } from "@mui/material";
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 function Dropdown (){
-    const [isActive,setIsActive,activeItem]=useState(false)
+    const [isActive,setIsActive]=useState(false)
 
     
-      const [ setActiveItem] = useState(null);
+      const [activeItem,setActiveItem] = useState(null);
     
       const handleItemClick = (itemIndex) => {
       if (activeItem === itemIndex) {
@@ -13,46 +16,64 @@ function Dropdown (){
         setActiveItem(itemIndex);
       }
     };
+    
     return (
         
-        <div className="dropdown">
+       <div className="dropdown">
             
              <div className="dropdown-btn" onClick={e =>
             setIsActive(!isActive)}>
-                finans Türü
+                Finans Türü
                 <span className='fas fa-caret-down'></span>
              </div>
             {isActive&& (
                 <div className="dropdown-content"> 
-                   <button className="dropdown-item" onClick={() => handleItemClick(0)}>
+                   <Button variant="contained" color="primary" className="dropdown-item" onClick={() => handleItemClick(0)}>
                      Döviz
-                   </button>
+                   </Button>
                    {activeItem === 0 && (
                       <div className="dropdown-content-alt">
-                            <button className="dropdown-item-alt">Alt Menü 1</button>
-                            <button className="dropdown-item-alt">Alt Menü 2</button>
+                            <Button variant="contained" color="primary" className="dropdown-item-alt">Dolar</Button>
+                            <Button variant="contained" color="primary" className="dropdown-item-alt">Euro</Button>
+                            <Button variant="contained" color="primary" className="dropdown-item-alt">Sterlin</Button>
                       </div>
         )}
-                   <button className="dropdown-item" onClick={() => handleItemClick(1)}>
+                   <Button variant="contained" color="primary" className="dropdown-item" onClick={() => handleItemClick(1)}>
                      Altin
-                   </button>
+                   </Button>
                    {activeItem === 1 && (
                       <div className="dropdown-content-alt">
-                            <button className="dropdown-item-alt">Alt Menü 3</button>
-                            <button className="dropdown-item-alt">Alt Menü 4</button>
+                            <Button variant="contained" color="primary" className="dropdown-item-alt">Gram</Button>
+                            <Button variant="contained" color="primary" className="dropdown-item-alt">Çeyrek</Button>
+                            <Button variant="contained" color="primary" className="dropdown-item-alt">Tam</Button>
                       </div>
         )}
-                   <button className="dropdown-item">
+                   <Button variant="contained" color="primary" className="dropdown-item" onClick={() => handleItemClick(2)}>
                      Fon
-                   </button>
-                   <button className="dropdown-item">
+                   </Button>
+                   {activeItem === 2 && (
+                      <div className="dropdown-content-alt">
+                            <Button variant="contained" color="primary" className="dropdown-item-alt">Gram</Button>
+                            <Button variant="contained" color="primary" className="dropdown-item-alt">Çeyrek</Button>
+                            <Button variant="contained" color="primary" className="dropdown-item-alt">Tam</Button>
+                      </div>
+        )}
+                   <Button variant="contained" color="primary"className="dropdown-item" onClick={() => handleItemClick(3)}>
                      Hisse
-                   </button>
+                   </Button>
+                   {activeItem === 3 && (
+                      <div className="dropdown-content-alt">
+                            <Button variant="contained" color="primary" className="dropdown-item-alt">Gram</Button>
+                            <Button variant="contained" color="primary" className="dropdown-item-alt">Çeyrek</Button>
+                            <Button variant="contained" color="primary" className="dropdown-item-alt">Tam</Button>
+                      </div>
+        )}
                    </div>   
             )}
             
             
         </div>
     )
+    
 }
 export default Dropdown

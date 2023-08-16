@@ -10,7 +10,6 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 //Stashed changes
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Deneme from './deneme';
 import ButonsMain from './butonsMain';
 import { Typography } from '@mui/material';
 

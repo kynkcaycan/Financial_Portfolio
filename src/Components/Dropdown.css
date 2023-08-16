@@ -84,8 +84,14 @@ body{
     padding: 10px;
     cursor: pointer;
     transition: all 0.2s;
+    margin-left: 10%;
+    margin-right:10%;
 }
-
+.dropdown .dropdown-content .dropdown-content-alt .dropdown-item-alt{
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
 .dropdown .dropdown-content .dropdown-item:hover{
     background: #f4f4f4;
 }
