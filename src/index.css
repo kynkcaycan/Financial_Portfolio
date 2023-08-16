@@ -7,7 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
    align-items: center;
    background-color: #F9F2E1;
-   /* background-image: url('C:\\Users\\aycan\\Downloads\\fishwp.png'); */
+    /* background-image: url('./src/fishwp.png'); */
   
 
 }
@@ -59,7 +59,6 @@ Button{
   flex-direction:row;
   margin-top: 6%;
   background-color: rgb(6, 6, 50);
-  
   min-width:100%;
   
  
