@@ -25,7 +25,7 @@ function App() {
       <div className="App">
 
         <div className="middleBox">
-          <header className="App-header">My Potfolio</header>
+         
       
             <Switch>
               <Route exact path="/">
