@@ -12,6 +12,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ButonsMain from './butonsMain';
 import { Typography } from '@mui/material';
+import BuyProcessPage from './Pages/BuyProcessPage';
 
 
 function App() {
@@ -33,10 +34,14 @@ function App() {
               </Route>
               <Route path="/buy">
                 <BuyPage/>
-              </Route>
+               </Route>
 
               <Route path="/sell">
                 <BuyPage/>
+              </Route>
+
+              <Route path="/buying">
+                <BuyProcessPage/>
               </Route>
 
 

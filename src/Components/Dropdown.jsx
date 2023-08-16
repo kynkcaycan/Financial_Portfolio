@@ -4,9 +4,7 @@ import { Button } from "@mui/material";
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 function Dropdown (){
-    const [isActive,setIsActive]=useState(false)
-
-    
+      const [isActive,setIsActive]=useState(false)
       const [activeItem,setActiveItem] = useState(null);
     
       const handleItemClick = (itemIndex) => {
@@ -17,6 +15,11 @@ function Dropdown (){
       }
     };
     
+    const clickBuying = () => {
+
+      window.location.href = '/buying';
+
+    }
     return (
         
        <div className="dropdown">
@@ -33,9 +36,9 @@ function Dropdown (){
                    </Button>
                    {activeItem === 0 && (
                       <div className="dropdown-content-alt">
-                            <Button variant="contained" color="primary" className="dropdown-item-alt">Dolar</Button>
-                            <Button variant="contained" color="primary" className="dropdown-item-alt">Euro</Button>
-                            <Button variant="contained" color="primary" className="dropdown-item-alt">Sterlin</Button>
+                            <Button variant="contained" color="primary" className="dropdown-item-alt" onClick={()=>clickBuying()}>Dolar</Button>
+                            <Button variant="contained" color="primary" className="dropdown-item-alt" onClick={()=>clickBuying()}>Euro</Button>
+                            <Button variant="contained" color="primary" className="dropdown-item-alt" onClick={()=>clickBuying()}>Sterlin</Button>
                       </div>
         )}
                    <Button variant="contained" color="primary" className="dropdown-item" onClick={() => handleItemClick(1)}>
@@ -43,9 +46,9 @@ function Dropdown (){
                    </Button>
                    {activeItem === 1 && (
                       <div className="dropdown-content-alt">
-                            <Button variant="contained" color="primary" className="dropdown-item-alt">Gram</Button>
-                            <Button variant="contained" color="primary" className="dropdown-item-alt">Çeyrek</Button>
-                            <Button variant="contained" color="primary" className="dropdown-item-alt">Tam</Button>
+                            <Button variant="contained" color="primary" className="dropdown-item-alt" onClick={()=>clickBuying()}>Gram</Button>
+                            <Button variant="contained" color="primary" className="dropdown-item-alt" onClick={()=>clickBuying()}>Çeyrek</Button>
+                            <Button variant="contained" color="primary" className="dropdown-item-alt" onClick={()=>clickBuying()}>Tam</Button>
                       </div>
         )}
                    <Button variant="contained" color="primary" className="dropdown-item" onClick={() => handleItemClick(2)}>
