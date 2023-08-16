@@ -6,7 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
    align-items: center;
-   /* background-color: rgb(255, 255, 255); */
+   background-color: #F9F2E1;
    /* background-image: url('C:\\Users\\aycan\\Downloads\\fishwp.png'); */
   
 
@@ -16,30 +16,32 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.butons{
+/* .butons{
   display: flex;
   flex-direction: column;
   max-width: 40%;
   margin: 40px auto;
   padding: 20px;
-
-}
+} */
 .middleBox{
  
   text-align: center;
-  min-height: 100vh;
+  min-height: 50%;
   align-items: center;
   place-items: center;
   justify-content: flex;
   max-width: 60%;
+  
   margin: 40px auto;
   padding: 20px;
-  background-color: rgb(37, 177, 88);
+  background-color: #e0ddd5;
   max-width: 60%;
   margin: 40px auto;
   padding: 20px;
- 
+  padding-bottom: 20px;
 flex-direction: column;
+display:flex;
+justify-content: center;
 
 }
 .middleBox:hover {
@@ -50,4 +52,18 @@ Button{
   max-width: 60%;
   margin: 40px auto;
   padding: 20px;
+  color: rgb(6, 6, 50);
+  
+}
+.mainButons Button{
+  flex-direction:row;
+  margin-top: 6%;
+  background-color: rgb(6, 6, 50);
+  
+  min-width:100%;
+  
+ 
+}
+.middleBox buysellport{
+  align-content: center;
 }

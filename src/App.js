@@ -12,6 +12,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Deneme from './deneme';
 import ButonsMain from './butonsMain';
+import { Typography } from '@mui/material';
 
 
 function App() {
@@ -19,10 +20,11 @@ function App() {
 
   return (
     <div className="App">
-       <header className="App-header">My Potfolio0</header>
+
+     <Typography variant='h1'>My Portfolio</Typography>
     <Router>
      
-      <div className="App">
+    
 
         <div className="middleBox">
          
@@ -39,9 +41,10 @@ function App() {
             </Switch>         
         </div>
 
-      </div>
+   
     </Router>
     </div>
+   
 //Updated upstream
 
  
