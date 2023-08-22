@@ -34,7 +34,7 @@ function App() {
                </Route>
 
               <Route path="/sell">
-                <BuyPage/>
+                <SellPage/>
               </Route>
 
               <Route path="/buying">
