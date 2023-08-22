@@ -1,11 +1,8 @@
 
 import './App.css';
-import Button from '@mui/material/Button';
 import BuyPage from './Pages/BuyPage';
 // Updated upstream
-import {useHistory} from "react-router-dom"
 
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 
 //Stashed changes
@@ -13,6 +10,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ButonsMain from './butonsMain';
 import { Typography } from '@mui/material';
 
+import MyPortfolioPage from './Pages/myPortfolioPage';
 
 function App() {
  
@@ -20,14 +18,11 @@ function App() {
   return (
     <div className="App">
 
-     <Typography variant='h1'>My Portfolio</Typography>
+     <Typography variant='h1'color=''>My Portfolio</Typography>
     <Router>
      
-    
-
         <div className="middleBox">
          
-      
             <Switch>
               <Route exact path="/">
                <ButonsMain/>
@@ -35,6 +30,9 @@ function App() {
               </Route>
               <Route path="/buy">
                 <BuyPage/>
+              </Route >            
+              <Route path="/portfolio">
+                <MyPortfolioPage/>
               </Route>
 
             </Switch>         

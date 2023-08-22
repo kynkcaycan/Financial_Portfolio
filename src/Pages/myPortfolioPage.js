@@ -1,9 +1,12 @@
-const myPortfolioPage = () => {
+
+import React from 'react';
+
+const MyPortfolioPage = () => {
     return ( 
-      <p>a</p>
+    <p>adddddd</p>
 
 
      );
 }
  
-export default myPortfolioPage;
+export default MyPortfolioPage;
