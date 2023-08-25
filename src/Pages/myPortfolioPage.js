@@ -1,21 +1,39 @@
+// MyPortfolioPage.js
 
-import React, { useEffect } from 'react';
-import Axios from "axios";
-const MyPortfolioPage = () => {
-  const[data,setData]=useStage();
-  const getData=async()=>{
-    const response =await Axios.get("http://localhost:5000/getData")
-   setData(response.data);
-  
-  }
-  useEffect(()=>{
-    getData()
-  },[]);
-    return ( 
-  <div>{data}</div>
+import React from 'react';
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 
+function MyPortfolioPage({ doviz }) {
+  // Doviz verilerini kullanabilirsiniz
+  console.log("Doviz Verileri:", doviz);
 
-     );
+  return (
+    <div>
+      <Typography variant='h4' color=''>Portföy Detayları</Typography>
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Gold Type</TableCell>
+              <TableCell>Buyed</TableCell>
+              <TableCell>Quantity</TableCell>
+              <TableCell>Unit Price</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {doviz.map((item, index) => (
+              <TableRow key={index}>
+                <TableCell>{item.typeofGold}</TableCell>
+                <TableCell>{item.created}</TableCell>
+                <TableCell>{item.quantity}</TableCell>
+                <TableCell>{item.unitPrice}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </div>
+  );
 }
- 
+
 export default MyPortfolioPage;

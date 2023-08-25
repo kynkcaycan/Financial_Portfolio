@@ -24,7 +24,7 @@ const ButonsMain = () => {
             <div class='mainButons'><Button onClick={clickPortfolio} variant="contained" color='success' >Portfolio</Button> </div>
             <div class='mainButons' > <Button onClick={clickSell} 
                 variant="contained" color='success'>Sell</Button></div>
-            <div class='mainButons'><Button 
+            <div class='mainButons'><Button onClick={clickPortfolio}
                 variant="contained" color='success' >Portfolio</Button> </div>
 
         </div>

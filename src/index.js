@@ -5,13 +5,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 
-import express from "express";
-import cors from "cors";
-import MyPortfolioPage from './Pages/myPortfolioPage';
-
-MyPortfolioPage.use(cors());
-MyPortfolioPage.get("/getData",(req,res)=>)
-
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
