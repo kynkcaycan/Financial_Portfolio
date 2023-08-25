@@ -30,8 +30,9 @@ code {
   align-items: center;
   place-items: center;
   justify-content: flex;
-  max-width: 60%;
-  
+  max-width: 80%;
+  min-width: 80%;
+
   margin: 40px auto;
   padding: 20px;
   background-color: #e0ddd5;
