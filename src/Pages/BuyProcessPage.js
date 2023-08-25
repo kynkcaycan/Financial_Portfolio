@@ -1,18 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import BuyingProcesses from '../components/BuyingProcesses'
+import BuyingProcesses from "../components/BuyingProcesses";
 
-class BuyProcessPage extends Component{
+const BuyProcessPage = () => {
+  return (
+    <>
+      <BuyingProcesses />
+    </>
+  );
+};
 
-    render(){
-        return(
-
-            <>
-            <BuyingProcesses/>
-            </>
-        )
-    }
-
-}
-
-export default BuyProcessPage
+export default BuyProcessPage;

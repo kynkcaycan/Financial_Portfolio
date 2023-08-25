@@ -1,15 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import Dropdown from '../components/Dropdown'
+import Dropdown from "../components/Dropdown";
 
-function BuyPage () {
-    return(
-       
+function BuyPage() {
+  return (
     <>
-    <Dropdown/>
-
+      <Dropdown />
     </>
-    );
+  );
 }
 
 export default BuyPage;
