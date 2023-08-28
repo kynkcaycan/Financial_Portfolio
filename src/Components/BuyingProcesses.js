@@ -7,24 +7,16 @@ import Dropdown from "./Dropdown";
 const BuyingProcesses = () => {
   const [step, setStep] = useState(0);
 
-  const [dovizTuru, setDovizTuru] = useState("EURO");
+  const [dovizTuru, setDovizTuru] = useState("");
   const [unitPrice, setUnitPrice] = useState(0.0);
-  const [created, setCreated] = useState();
+  const [created, setCreated] = useState("");
   const [quantity, setQuantity] = useState(0.0);
-
-  /*useEffect(() => {
-    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-  }, [variable]);*/
 
   const clickBuyMenu = () => {
     window.location.href = "/buying";
   };
 
   const dolarClick = () => {};
-
-  /*const handleChangeMiktar = (e) => {
-    setMiktar(e.target.value);
-  };*/
 
   // Tüm state'leri tanımla...
 
@@ -48,28 +40,28 @@ const BuyingProcesses = () => {
               <h3>yatırım bilgileri</h3>
             </div>
             <div className="card-body">
-              <form>
+              <form onSubmit={varliklarimaEkle}>
                 <div className="form-group">
                   <div className="form-items">
-                    <label htmlFor="miktar">Ürün miktarı</label>
+                    <label htmlFor="quantity">Ürün miktarı</label>
                     <input
                       type="number"
-                      name="miktar"
+                      name="quantity"
                       id="id1"
                       placeholder="ürün miktarı giriniz"
                       class="form-control"
-                      onChange={(e) => setQuantity(e)} //miktar yazılınca quantity set edilsin
+                      onChange={(e) => setQuantity(e.target.value)} //miktar yazılınca quantity set edilsin
                     ></input>
                   </div>
                   <div className="form-items">
-                    <label htmlFor="bfiyat">Ürün fiyatı</label>
+                    <label htmlFor="unitPrice">Ürün fiyatı</label>
                     <input
-                      type="text"
-                      name="bfiyat"
+                      type="number"
+                      name="unitPrice"
                       id="id2"
                       placeholder="birim fiyatı giriniz"
-                      class="form-control"
-                      onChange={(e) => setUnitPrice(e)}
+                      className="form-control"
+                      onChange={(e) => setUnitPrice(e.target.value)}
                     ></input>
                   </div>
                   <div className="form-items">
@@ -79,8 +71,8 @@ const BuyingProcesses = () => {
                       name="tarih"
                       id="id3"
                       placeholder="tarih giriniz"
-                      class="form-control"
-                      onChange={(e) => setCreated(e)}
+                      className="form-control"
+                      onChange={(e) => setCreated(e.target.value)}
                     ></input>
                   </div>
                 </div>
@@ -91,7 +83,7 @@ const BuyingProcesses = () => {
                       color="primary"
                       className="btn btn-save btn-block"
                       type="submit"
-                      onClick={varliklarimaEkle}
+                      // onClick={varliklarimaEkle}
                     >
                       Varlıklarıma Ekle
                     </Button>
