@@ -7,10 +7,10 @@ import Dropdown from "./Dropdown";
 const BuyingProcesses = () => {
   const [step, setStep] = useState(0);
 
-  const [dovizTuru, setDovizTuru] = useState("");
-  const [unitPrice, setUnitPrice] = useState(0.0);
-  const [created, setCreated] = useState("");
-  const [quantity, setQuantity] = useState(0.0);
+  const [dovizTuru, setDovizTuru] = useState();
+  const [unitPrice, setUnitPrice] = useState();
+  const [created, setCreated] = useState();
+  const [quantity, setQuantity] = useState();
 
   const clickBuyMenu = () => {
     window.location.href = "/buying";
