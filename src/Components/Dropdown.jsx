@@ -4,7 +4,8 @@ import { Button } from "@mui/material";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
-function Dropdown({ setStep, setDovizTuru }) {
+function Dropdown({ setStep }) {
+  //, setDovizTuru
   const [isActive, setIsActive] = useState(false);
   const [activeItem, setActiveItem] = useState(null);
 
@@ -16,10 +17,11 @@ function Dropdown({ setStep, setDovizTuru }) {
     }
   };
 
-  const clickBuying = (dovizTuru) => {
+  const clickBuying = () => {
+    //dovizTuru
     //döviz türünü clickbuying fonk parametre verdik.tıklayınca dovizturunu set edecek.
     setStep(1);
-    setDovizTuru(dovizTuru);
+    //  setDovizTuru(dovizTuru);
   };
   return (
     <div className="dropdown">
@@ -43,7 +45,7 @@ function Dropdown({ setStep, setDovizTuru }) {
                 variant="contained"
                 color="primary"
                 className="dropdown-item-alt"
-                onClick={() => clickBuying("dolar")}
+                onClick={() => clickBuying()} //"dolar"
               >
                 Dolar
               </Button>
@@ -51,7 +53,7 @@ function Dropdown({ setStep, setDovizTuru }) {
                 variant="contained"
                 color="primary"
                 className="dropdown-item-alt"
-                onClick={() => clickBuying("euro")}
+                onClick={() => clickBuying()}
               >
                 Euro
               </Button>
@@ -59,7 +61,7 @@ function Dropdown({ setStep, setDovizTuru }) {
                 variant="contained"
                 color="primary"
                 className="dropdown-item-alt"
-                onClick={() => clickBuying("sterlin")}
+                onClick={() => clickBuying()}
               >
                 Sterlin
               </Button>

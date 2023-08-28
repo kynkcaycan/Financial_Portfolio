@@ -7,10 +7,22 @@ import Dropdown from "./Dropdown";
 const BuyingProcesses = () => {
   const [step, setStep] = useState(0);
 
-  const [dovizTuru, setDovizTuru] = useState();
-  const [unitPrice, setUnitPrice] = useState();
-  const [created, setCreated] = useState();
-  const [quantity, setQuantity] = useState();
+  const [post, setPost] = useState({
+    dovizTuru: "",
+    unitPrice: 0,
+    created: "",
+    quantity: 0,
+  });
+
+  const handleInput = (event) => {
+    setPost({ ...post, [event.target.name]: event.target.value });
+  };
+
+  /*
+  const [dovizTuru, setDovizTuru] = useState("");
+  const [unitPrice, setUnitPrice] = useState(0.0);
+  const [created, setCreated] = useState("");
+  const [quantity, setQuantity] = useState(0.0);*/
 
   const clickBuyMenu = () => {
     window.location.href = "/buying";
@@ -20,18 +32,21 @@ const BuyingProcesses = () => {
 
   // Tüm state'leri tanımla...
 
-  const varliklarimaEkle = () => {
-    axios.post("http://localhost:8080/api/v1/doviz", {
-      dovizTuru: dovizTuru,
+  function varliklarimaEkle(event) {
+    event.preventDefault();
+    axios.post(
+      "http://localhost:8080/api/v1/doviz",
+      post
+      /*dovizTuru: dovizTuru,
       unitPrice: unitPrice,
       created: created,
-      quantity: quantity,
-    });
-  };
+      quantity: quantity,*/
+    );
+  }
 
   const showingComponent = () => {
     if (step === 0) {
-      return <Dropdown setStep={setStep} setDovizTuru={setDovizTuru} />;
+      return <Dropdown setStep={setStep} />;
     } else if (step === 1) {
       return (
         <div className="form">
@@ -43,36 +58,43 @@ const BuyingProcesses = () => {
               <form onSubmit={varliklarimaEkle}>
                 <div className="form-group">
                   <div className="form-items">
-                    <label htmlFor="quantity">Ürün miktarı</label>
-                    <input
-                      type="number"
-                      name="quantity"
-                      id="id1"
-                      placeholder="ürün miktarı giriniz"
-                      class="form-control"
-                      onChange={(e) => setQuantity(e.target.value)} //miktar yazılınca quantity set edilsin
-                    ></input>
-                  </div>
-                  <div className="form-items">
-                    <label htmlFor="unitPrice">Ürün fiyatı</label>
-                    <input
-                      type="number"
-                      name="unitPrice"
-                      id="id2"
-                      placeholder="birim fiyatı giriniz"
-                      className="form-control"
-                      onChange={(e) => setUnitPrice(e.target.value)}
-                    ></input>
-                  </div>
-                  <div className="form-items">
-                    <label htmlFor="tarih">alınan tarih</label>
+                    döviz türü:
                     <input
                       type="text"
-                      name="tarih"
-                      id="id3"
+                      placeholder="döviz türü giriniz"
+                      class="form-control"
+                      onChange={handleInput} //miktar yazılınca quantity set edilsin(e) => setDovizTuru(e.target.value)
+                      name="dovizTuru"
+                    ></input>
+                  </div>
+                  <div className="form-items">
+                    Ürün miktarı:
+                    <input
+                      type="number"
+                      placeholder="ürün miktarı giriniz"
+                      class="form-control"
+                      onChange={handleInput} //miktar yazılınca quantity set edilsin (e) => setQuantity(e.target.value)
+                      name="quantity"
+                    ></input>
+                  </div>
+                  <div className="form-items">
+                    Ürün fiyatı:
+                    <input
+                      type="number"
+                      placeholder="birim fiyatı giriniz"
+                      className="form-control"
+                      onChange={handleInput} //(e) => setUnitPrice(e.target.value)
+                      name="unitPrice"
+                    ></input>
+                  </div>
+                  <div className="form-items">
+                    alınan tarih
+                    <input
+                      type="text"
                       placeholder="tarih giriniz"
                       className="form-control"
-                      onChange={(e) => setCreated(e.target.value)}
+                      onChange={handleInput} //(e) => setCreated(e.target.value)
+                      name="tarih"
                     ></input>
                   </div>
                 </div>
@@ -83,7 +105,7 @@ const BuyingProcesses = () => {
                       color="primary"
                       className="btn btn-save btn-block"
                       type="submit"
-                      // onClick={varliklarimaEkle}
+                      //onClick={varliklarimaEkle}
                     >
                       Varlıklarıma Ekle
                     </Button>
