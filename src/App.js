@@ -4,12 +4,13 @@ import "./App.css"; // App.js içinde CSS dosyasını içe aktarıyorsunuz
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Typography } from "@mui/material";
-import BuyPage from "./Pages/BuyPage";
+
 import api from "./api/axiosConfig";
 import ButonsMain from "./butonsMain";
-import BuyProcessPage from "./Pages/BuyProcessPage";
-import MyPortfolioPage from "./Pages/myPortfolioPage";
 
+import MyPortfolioPage from "./Pages/myPortfolioPage";
+import BuyingProcesses from "./Pages/BuyingProcesses";
+import SellingProcesses from "./Pages/SellingProcesses";
 function App() {
   const [doviz, setDoviz] = useState([]);
 
@@ -36,10 +37,11 @@ function App() {
               <ButonsMain />
             </Route>
             <Route path="/sell">
-              <BuyPage />
+              <SellingProcesses/>
             </Route>
             <Route path="/buying">
-              <BuyProcessPage />
+            <BuyingProcesses />
+
             </Route>
             <Route path="/portfolio">
               {/* Doviz verilerini MyPortfolioPage'e iletiyoruz */}

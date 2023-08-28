@@ -22,7 +22,7 @@ const ButonsMain = () => {
       </div>
       <div class="mainButons">
         {" "}
-        <Button variant="contained" color="success">
+        <Button onClick={clickSell} variant="contained" color="success">
           Satış Ekle
         </Button>
       </div>

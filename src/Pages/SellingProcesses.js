@@ -2,9 +2,9 @@ import { Button, Grid } from "@mui/material";
 import "./BuyingProcesses.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Dropdown from "./Dropdown";
+import Dropdown from "../components/Dropdown";
 
-const BuyingProcesses = () => {
+const SellingProcesses = () => {
   const [step, setStep] = useState(0);
 
   /* const [post, setPost] = useState({
@@ -22,6 +22,7 @@ const BuyingProcesses = () => {
   const [unitPrice, setUnitPrice] = useState(0.0);
   const [created, setCreated] = useState("");
   const [quantity, setQuantity] = useState(0.0);
+  const[status,setStatus]=useState("");
 
   const clickBuyMenu = () => {
     window.location.href = "/buying";
@@ -41,19 +42,11 @@ const BuyingProcesses = () => {
         unitPrice: unitPrice,
         created: created,
         quantity: quantity,
+        status:"Satış"
       }
     );
   }
-  /*<div className="form-items">
-                    döviz türü:
-                    <input
-                      type="text"
-                      placeholder="döviz türü giriniz"
-                      class="form-control"
-                      onChange={(e) => setDovizTuru(e.target.value)} //miktar yazılınca quantity set edilsin
-                      name="dovizTuru"
-                    ></input>
-                  </div> form içine*/
+
 
   const showingComponent = () => {
     if (step === 0) {
@@ -63,11 +56,12 @@ const BuyingProcesses = () => {
         <div className="form">
           <div className="card">
             <div className="card-header">
-              <h3>yatırım bilgileri</h3>
+              <h3>Satış bilgileri</h3>
             </div>
             <div className="card-body">
               <form onSubmit={varliklarimaEkle}>
                 <div className="form-group">
+                  
                   <div className="form-items">
                     Ürün miktarı:
                     <input
@@ -89,7 +83,7 @@ const BuyingProcesses = () => {
                     ></input>
                   </div>
                   <div className="form-items">
-                    alınan tarih
+                    Satış Tarihi
                     <input
                       type="text"
                       placeholder="tarih giriniz"
@@ -108,7 +102,7 @@ const BuyingProcesses = () => {
                       type="submit"
                       //onClick={varliklarimaEkle}
                     >
-                      Varlıklarıma Ekle
+                      Satış Ekle
                     </Button>
                   </Grid>
                   <Grid item>
@@ -131,4 +125,4 @@ const BuyingProcesses = () => {
   };
   return showingComponent();
 };
-export default BuyingProcesses;
+export default SellingProcesses;

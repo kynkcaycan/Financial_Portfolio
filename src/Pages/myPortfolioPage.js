@@ -19,7 +19,8 @@ function MyPortfolioPage({ doviz }) {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Gold Type</TableCell>
+               <TableCell>Alım Satım Durumu </TableCell>
+              <TableCell>Type</TableCell>
               <TableCell>Buyed</TableCell>
               <TableCell>Quantity</TableCell>
               <TableCell>Unit Price</TableCell>
@@ -28,10 +29,12 @@ function MyPortfolioPage({ doviz }) {
           <TableBody>
             {doviz.map((item, index) => (
               <TableRow key={index}>
+                <TableCell>{item.status}</TableCell>
                 <TableCell>{item.dovizTuru}</TableCell>
                 <TableCell>{item.created}</TableCell>
                 <TableCell>{item.quantity}</TableCell>
                 <TableCell>{item.unitPrice}</TableCell>
+
               </TableRow>
             ))}
           </TableBody>
