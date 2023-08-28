@@ -1,6 +1,7 @@
 import { Button, Grid } from "@mui/material";
 import "./BuyingProcesses.css";
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import axios from "axios";
 import Dropdown from "../components/Dropdown";
 
@@ -24,6 +25,8 @@ const BuyingProcesses = () => {
   const [quantity, setQuantity] = useState(0.0);
   const[status,setStatus]=useState("");
 
+  const { handleSubmit, reset } = useForm();
+
   const clickBuyMenu = () => {
     window.location.href = "/buying";
   };
@@ -32,9 +35,9 @@ const BuyingProcesses = () => {
 
   // Tüm state'leri tanımla...
 
-  function varliklarimaEkle(event) {
-    event.preventDefault();
-    axios.post(
+  const varliklarimaEkle = async (event) => {
+    //event.preventDefault();
+    await axios.post(
       "http://localhost:8080/api/v1/doviz",
       // post
       {
@@ -45,7 +48,8 @@ const BuyingProcesses = () => {
         status:"Alım"
       }
     );
-  }
+    reset();
+  };
   /*<div className="form-items">
                     döviz türü:
                     <input
@@ -68,7 +72,7 @@ const BuyingProcesses = () => {
               <h3>yatırım bilgileri</h3>
             </div>
             <div className="card-body">
-              <form onSubmit={varliklarimaEkle}>
+              <form onSubmit={handleSubmit(varliklarimaEkle)}>
                 <div className="form-group">
                   <div className="form-items">
                     Ürün miktarı:
