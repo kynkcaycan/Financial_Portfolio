@@ -17,18 +17,18 @@ const ButonsMain = () => {
       <div class="mainButons">
         {" "}
         <Button onClick={clickBuy} variant="contained" color="success">
-          Buy
+          Alım Ekle
         </Button>
       </div>
       <div class="mainButons">
         {" "}
         <Button variant="contained" color="success">
-          Sell
+          Satış Ekle
         </Button>
       </div>
       <div class="mainButons">
         <Button onClick={clickPortfolio} variant="contained" color="success">
-          Portfolio
+          Portfolyö
         </Button>{" "}
       </div>
     </div>

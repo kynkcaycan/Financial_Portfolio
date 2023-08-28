@@ -8,8 +8,13 @@ function MyPortfolioPage({ doviz }) {
   console.log("Doviz Verileri:", doviz);
 
   return (
+  
     <div>
-      <Typography variant='h4' color=''>Portföy Detayları</Typography>
+      <div className="baslikaltibosluk">
+      <h1 >Portföyüm</h1>
+      </div>
+    
+     
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
@@ -23,7 +28,7 @@ function MyPortfolioPage({ doviz }) {
           <TableBody>
             {doviz.map((item, index) => (
               <TableRow key={index}>
-                <TableCell>{item.typeofGold}</TableCell>
+                <TableCell>{item.dovizTuru}</TableCell>
                 <TableCell>{item.created}</TableCell>
                 <TableCell>{item.quantity}</TableCell>
                 <TableCell>{item.unitPrice}</TableCell>
