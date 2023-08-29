@@ -35,9 +35,13 @@ function App() {
           <Switch>
             <Route exact path="/">
               <ButonsMain />
+              
             </Route>
     
-             
+            <Route path="/enterValue">
+             <h1>enter value</h1>
+
+            </Route>
         
             <Route path="/add">
             <BuyingProcesses />
