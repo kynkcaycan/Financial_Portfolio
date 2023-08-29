@@ -1,11 +1,11 @@
 import Button from "@mui/material/Button";
 const ButonsMain = () => {
   const clickBuy = () => {
-    window.location.href = "/buying";
+    window.location.href = "/add";
   };
 
   const clickSell = () => {
-    window.location.href = "/instantPrices";
+    window.location.href = "/enterValue";
   };
 
   const clickPortfolio = () => {
@@ -23,7 +23,7 @@ const ButonsMain = () => {
       <div class="mainButons">
         {" "}
         <Button onClick={clickSell} variant="contained" color="success">
-          Birim Fiyatlar
+          Değer Girişi Yap
         </Button>
       </div>
       <div class="mainButons">
