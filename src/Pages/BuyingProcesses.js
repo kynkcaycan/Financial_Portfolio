@@ -23,7 +23,6 @@ const BuyingProcesses = () => {
   const [unitPrice, setUnitPrice] = useState(0.0);
   const [created, setCreated] = useState("");
   const [quantity, setQuantity] = useState(0.0);
-  const[status,setStatus]=useState("");
 
   const { handleSubmit, reset } = useForm();
 
@@ -45,7 +44,6 @@ const BuyingProcesses = () => {
         unitPrice: unitPrice,
         created: created,
         quantity: quantity,
-        status:"Alım"
       }
     );
     reset();

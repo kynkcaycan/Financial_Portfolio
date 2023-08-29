@@ -5,7 +5,7 @@ const ButonsMain = () => {
   };
 
   const clickSell = () => {
-    window.location.href = "/sell";
+    window.location.href = "/instantPrices";
   };
 
   const clickPortfolio = () => {
@@ -23,7 +23,7 @@ const ButonsMain = () => {
       <div class="mainButons">
         {" "}
         <Button onClick={clickSell} variant="contained" color="success">
-          Satış Ekle
+          Birim Fiyatlar
         </Button>
       </div>
       <div class="mainButons">

@@ -1,19 +1,17 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-   align-items: center;
-   background-color: #F9F2E1;
-    /* background-image: url('./src/fishwp.png'); */
-  
-
+  align-items: center;
+  background-color: #f9f2e1;
+  /* background-image: url('./src/fishwp.png'); */
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 /* .butons{
@@ -23,8 +21,7 @@ code {
   margin: 40px auto;
   padding: 20px;
 } */
-.middleBox{
- 
+.middleBox {
   text-align: center;
   min-height: 50%;
   align-items: center;
@@ -40,36 +37,44 @@ code {
   margin: 40px auto;
   padding: 20px;
   padding-bottom: 20px;
-flex-direction: column;
-display:flex;
-justify-content: center;
-
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
 }
 .middleBox:hover {
   box-shadow: 1px 3px 5px rgba(206, 22, 22, 0.1);
 }
-Button{
+Button {
   margin-bottom: 3%;
   max-width: 60%;
   margin: 40px auto;
   padding: 20px;
   color: rgb(6, 6, 50);
-  
 }
-.mainButons Button{
-  flex-direction:row;
+.mainButons Button {
+  flex-direction: row;
   margin-top: 6%;
   background-color: rgb(6, 6, 50);
-  min-width:100%;
-  
- 
+  min-width: 100%;
 }
-.middleBox buysellport{
+.middleBox buysellport {
   align-content: center;
 }
- .baslikaltibosluk h1 {
+.baslikaltibosluk h1 {
   padding-bottom: 20%;
 }
-.dropdown{
+.dropdown {
   padding-top: 30%;
+}
+.form1 .card .card-body .form-group .form-items {
+  padding: 10px;
+  background: #fff;
+  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+  font-weight: bold;
+  color: #333;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  justify-content: space-between;
+  float: right;
 }

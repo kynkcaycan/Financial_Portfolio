@@ -10,7 +10,7 @@ import ButonsMain from "./butonsMain";
 
 import MyPortfolioPage from "./Pages/myPortfolioPage";
 import BuyingProcesses from "./Pages/BuyingProcesses";
-import SellingProcesses from "./Pages/SellingProcesses";
+import ProfitProcesses from "./Pages/ProfitProcesses";
 function App() {
   const [doviz, setDoviz] = useState([]);
 
@@ -36,12 +36,11 @@ function App() {
             <Route exact path="/">
               <ButonsMain />
             </Route>
-            <Route path="/sell">
-              <SellingProcesses/>
+            <Route path="/instantPrices">
+              <ProfitProcesses />
             </Route>
             <Route path="/buying">
-            <BuyingProcesses />
-
+              <BuyingProcesses />
             </Route>
             <Route path="/portfolio">
               {/* Doviz verilerini MyPortfolioPage'e iletiyoruz */}
