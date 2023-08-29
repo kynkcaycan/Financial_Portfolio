@@ -81,7 +81,7 @@ body{
   width: 95%;
 }
 .dropdown .dropdown-content .dropdown-item{
-    padding: 10px;
+    padding: 11px;
     cursor: pointer;
     transition: all 0.2s;
     margin-left: 10%;
