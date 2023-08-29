@@ -44,7 +44,7 @@ function App() {
 
             </Route>
             <Route path="/portfolio">
-              {/* Doviz verilerini MyPortfolioPage'e iletiyoruz */}
+            
               <MyPortfolioPage doviz={doviz} />
             </Route>
           </Switch>
