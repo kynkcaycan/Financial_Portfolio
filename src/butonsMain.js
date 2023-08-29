@@ -5,7 +5,7 @@ const ButonsMain = () => {
   };
 
   const clickSell = () => {
-    window.location.href = "/enterValue";
+    window.location.href = "/instancePrices";
   };
 
   const clickPortfolio = () => {

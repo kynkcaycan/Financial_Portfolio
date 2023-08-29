@@ -36,24 +36,15 @@ function App() {
           <Switch>
             <Route exact path="/">
               <ButonsMain />
-              
             </Route>
-            <Route path="/instantPrices">
+            <Route path="/instancePrices">
               <ProfitProcesses />
-    
-            <Route path="/enterValue">
-             <h1>enter value</h1>
-
             </Route>
-            <Route path="/buying">
-              <BuyingProcesses />
-        
-            <Route path="/add">
-            <BuyingProcesses />
 
+            <Route path="/add">
+              <BuyingProcesses />
             </Route>
             <Route path="/portfolio">
-            
               <MyPortfolioPage doviz={doviz} />
             </Route>
           </Switch>
