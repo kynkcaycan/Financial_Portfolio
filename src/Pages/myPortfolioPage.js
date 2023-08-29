@@ -19,21 +19,23 @@ function MyPortfolioPage({ doviz }) {
         <Table>
           <TableHead>
             <TableRow>
-               <TableCell>Alım Satım Durumu </TableCell>
-              <TableCell>Type</TableCell>
-              <TableCell>Buyed</TableCell>
-              <TableCell>Quantity</TableCell>
-              <TableCell>Unit Price</TableCell>
+              
+              <TableCell>Tür</TableCell>
+              <TableCell>Zaman</TableCell>
+              <TableCell>Adet</TableCell>
+              <TableCell>Birim Fiyatı</TableCell>
+              <TableCell>Kar Zarar Durumu</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {doviz.map((item, index) => (
               <TableRow key={index}>
-                <TableCell>{item.status}</TableCell>
+                
                 <TableCell>{item.dovizTuru}</TableCell>
                 <TableCell>{item.created}</TableCell>
                 <TableCell>{item.quantity}</TableCell>
                 <TableCell>{item.unitPrice}</TableCell>
+                <TableCell>kar durumu</TableCell>
 
               </TableRow>
             ))}

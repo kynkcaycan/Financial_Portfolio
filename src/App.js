@@ -10,7 +10,7 @@ import ButonsMain from "./butonsMain";
 
 import MyPortfolioPage from "./Pages/myPortfolioPage";
 import BuyingProcesses from "./Pages/BuyingProcesses";
-import SellingProcesses from "./Pages/SellingProcesses";
+
 function App() {
   const [doviz, setDoviz] = useState([]);
 
@@ -36,10 +36,10 @@ function App() {
             <Route exact path="/">
               <ButonsMain />
             </Route>
-            <Route path="/sell">
-              <SellingProcesses/>
-            </Route>
-            <Route path="/buying">
+    
+             
+        
+            <Route path="/add">
             <BuyingProcesses />
 
             </Route>
