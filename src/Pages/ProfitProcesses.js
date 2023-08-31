@@ -2,11 +2,17 @@ import React from "react";
 import { Button, Grid, TextField } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Formik, Form, Field } from "formik";
+import api from "../api/axiosConfig";
 
 function ProfitProcesses() {
-  const [profit, setProfit] = useState();
+  const [profit, setProfit] = useState(0.0);
+  const [profitType, setProfitType] = useState("");
+
+  const [data, setData] = useState([]);
+  const [dolarData, setDolarData] = useState([]); // Sadece DOLAR verilerini saklayacağız
+
   const [prices, setPrices] = useState({
+    //input alanları için
     gramAltin: 0,
     tamAltin: 0,
     ceyrekAltin: 0,
@@ -16,19 +22,74 @@ function ProfitProcesses() {
   });
 
   const handleInput = (event) => {
+    //onChange için
     setPrices({ ...prices, [event.target.name]: event.target.value });
   };
-  const varliklarimaEkle = async (event) => {
-    await axios.post(
-      "http://localhost:8080/api/v1/doviz",
+
+  //const [doviz, setDoviz] = useState([]);
+
+  useEffect(() => {
+    //doviz türü dolar olanları filtreleyip çekiyoruz. setdolardata ya atıyoruz
+    axios
+      .get("http://localhost:8080/api/v1/doviz")
+      .then((response) => {
+        const filteredData = response.data.filter(
+          (item) => item.dovizTuru === "DOLAR"
+        );
+        setDolarData(filteredData);
+      })
+      .catch((error) => {
+        console.error("Veri çekme hatası:", error);
+      });
+  }, []);
+
+  /*
+  useEffect(() => {
+    axios
+      .get('"http://localhost:8080/api/v1/doviz"')
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.error("Veri çekme hatası:", error);
+      });
+  }, []);*/
+  function calculateTotal(data) {
+    let ourTotal = 0;
+    let newTotal = 0;
+    let totalProfit = 0;
+
+    data.forEach((item) => {
+      //sadece dolarları attığımız datanın elemanlarına ulaşıyoruz
+      ourTotal += item.unitPrice * item.quantity;
+      newTotal += prices.dolar * item.quantity;
+    });
+    totalProfit = newTotal - ourTotal;
+
+    return totalProfit;
+  }
+  const totalDolarValue = calculateTotal(dolarData);
+  function varliklarimaEkle(event) {
+    //calculateTotal(data);
+    event.preventDefault();
+    axios.post(
+      "http://localhost:8080/api/v1/profit",
       // post
       {
-        profit: profit,
+        profitType: "DOLAR",
+        profit: totalDolarValue,
       }
     );
-  };
+  }
+
+  //profit = setProfit(totalDolarValue);
+  //profitType = setProfitType("DOLAR");
   return (
     <div>
+      <h1>Dolar Verileri</h1>
+
+      <p>Toplam Değer (Dolar): {totalDolarValue}</p>
+
       <div className="form1">
         <div className="card">
           <div className="card-body">
@@ -41,7 +102,7 @@ function ProfitProcesses() {
                     placeholder="gram altın fiyatını giriniz"
                     class="form-control"
                     onChange={handleInput} //miktar yazılınca quantity set edilsin
-                    name="quantity"
+                    name="gramAltin"
                   ></input>
                 </div>
                 <div className="form-items">
@@ -51,7 +112,7 @@ function ProfitProcesses() {
                     placeholder="çeyrek altın giriniz"
                     className="form-control"
                     onChange={handleInput}
-                    name="unitPrice"
+                    name="ceyrekAltin"
                   ></input>
                 </div>
                 <div className="form-items">
@@ -61,7 +122,7 @@ function ProfitProcesses() {
                     placeholder="tam altın giriniz"
                     className="form-control"
                     onChange={handleInput}
-                    name="tarih"
+                    name="tamAltin"
                   ></input>
                 </div>
                 <div className="form-items">
@@ -70,8 +131,9 @@ function ProfitProcesses() {
                     type="text"
                     placeholder="dolar fiyatı giriniz"
                     className="form-control"
-                    onChange={handleInput} //
-                    name="tarih"
+                    onChange={handleInput}
+                    //  {...setProfitType("DOLAR")} //
+                    name="dolar"
                   ></input>
                 </div>
                 <div className="form-items">
@@ -81,7 +143,7 @@ function ProfitProcesses() {
                     placeholder="tam altın giriniz"
                     className="form-control"
                     onChange={handleInput} //
-                    name="tarih"
+                    name="euro"
                   ></input>
                 </div>
                 <div className="form-items">
@@ -91,7 +153,7 @@ function ProfitProcesses() {
                     placeholder="sterlin fiyat giriniz"
                     className="form-control"
                     onChange={handleInput} //
-                    name="tarih"
+                    name="sterlin"
                   ></input>
                 </div>
               </div>
@@ -102,7 +164,7 @@ function ProfitProcesses() {
                     color="primary"
                     className="btn btn-save btn-block"
                     type="submit"
-                    //onClick={varliklarimaEkle}
+                    onClick={varliklarimaEkle}
                   >
                     Kar Zarar Hesapla
                   </Button>

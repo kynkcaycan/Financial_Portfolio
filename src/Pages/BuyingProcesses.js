@@ -30,8 +30,6 @@ const BuyingProcesses = () => {
     window.location.href = "/buying";
   };
 
-  const dolarClick = () => {};
-
   // Tüm state'leri tanımla...
 
   const varliklarimaEkle = async (event) => {
@@ -48,16 +46,6 @@ const BuyingProcesses = () => {
     );
     reset();
   };
-  /*<div className="form-items">
-                    döviz türü:
-                    <input
-                      type="text"
-                      placeholder="döviz türü giriniz"
-                      class="form-control"
-                      onChange={(e) => setDovizTuru(e.target.value)} //miktar yazılınca quantity set edilsin
-                      name="dovizTuru"
-                    ></input>
-                  </div> form içine*/
 
   const showingComponent = () => {
     if (step === 0) {
@@ -110,7 +98,6 @@ const BuyingProcesses = () => {
                       color="primary"
                       className="btn btn-save btn-block"
                       type="submit"
-                      //onClick={varliklarimaEkle}
                     >
                       Varlıklarıma Ekle
                     </Button>
