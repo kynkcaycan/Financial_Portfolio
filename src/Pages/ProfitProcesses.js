@@ -4,6 +4,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import api from "../api/axiosConfig";
 
+=======
+import api from "../api/axiosConfig";
+>>>>>>> master
+
 function ProfitProcesses() {
   const [profit, setProfit] = useState(0.0);
   const [profitType, setProfitType] = useState("");

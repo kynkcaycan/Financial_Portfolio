@@ -8,16 +8,7 @@ import Dropdown from "../components/Dropdown";
 const BuyingProcesses = () => {
   const [step, setStep] = useState(0);
 
-  /* const [post, setPost] = useState({
-    dovizTuru: "",
-    unitPrice: 0,
-    created: "",
-    quantity: 0,
-  });*/
 
-  /*const handleInput = (event) => {
-    setPost({ ...post, [event.target.name]: event.target.value });
-  };*/
 
   const [dovizTuru, setDovizTuru] = useState("");
   const [unitPrice, setUnitPrice] = useState(0.0);
@@ -26,6 +17,9 @@ const BuyingProcesses = () => {
 
   const { handleSubmit, reset } = useForm();
 
+  const [unitPrice_altin, setUnitPrice_altin] = useState(0.0);
+  const [created_altin, setCreated_altin] = useState("");
+  const [quantity_altin, setQuantity_altin] = useState(0.0);
   const clickBuyMenu = () => {
     window.location.href = "/buying";
   };
@@ -33,6 +27,37 @@ const BuyingProcesses = () => {
   // Tüm state'leri tanımla...
 
   const varliklarimaEkle = async (event) => {
+<<<<<<< HEAD
+
+if(dovizTuru==="GRAM"||dovizTuru=="CEYREK"){
+  await axios.post(
+    "http://localhost:8080/api/v1/altin",
+    // post
+    {
+      altinTuru: dovizTuru,
+      unitPrice_altin: unitPrice,
+      created_altin: created,
+      quantity_altin: quantity,
+    }
+  );
+  reset();
+}else if(dovizTuru==="DOLAR"||dovizTuru==="STERLİN"||dovizTuru==="EURO"){
+  await axios.post(
+    "http://localhost:8080/api/v1/doviz",
+    // post
+    {
+      dovizTuru: dovizTuru,
+      unitPrice: unitPrice,
+      created: created,
+      quantity: quantity,
+    }
+  );
+  reset();
+
+}
+  }
+
+=======
     //event.preventDefault();
     await axios.post(
       "http://localhost:8080/api/v1/doviz",
@@ -46,6 +71,7 @@ const BuyingProcesses = () => {
     );
     reset();
   };
+>>>>>>> master
 
   const showingComponent = () => {
     if (step === 0) {
@@ -66,7 +92,7 @@ const BuyingProcesses = () => {
                       type="number"
                       placeholder="ürün miktarı giriniz"
                       class="form-control"
-                      onChange={(e) => setQuantity(e.target.value)} //miktar yazılınca quantity set edilsin
+                      onChange={(e) => dovizTuru==="DOLAR"||"EURO"||"STERLİN"? setQuantity(e.target.value):setQuantity_altin(e.target.value)} //miktar yazılınca quantity set edilsin
                       name="quantity"
                     ></input>
                   </div>
@@ -76,7 +102,7 @@ const BuyingProcesses = () => {
                       type="number"
                       placeholder="birim fiyatı giriniz"
                       className="form-control"
-                      onChange={(e) => setUnitPrice(e.target.value)} //
+                      onChange={(e) => dovizTuru==="DOLAR"||"EURO"||"STERLİN"? setUnitPrice(e.target.value):setUnitPrice_altin(e.target.value)} //miktar yazılınca quantity set edilsin
                       name="unitPrice"
                     ></input>
                   </div>
@@ -86,7 +112,8 @@ const BuyingProcesses = () => {
                       type="text"
                       placeholder="tarih giriniz"
                       className="form-control"
-                      onChange={(e) => setCreated(e.target.value)} //
+                      onChange={(e) => 
+                        dovizTuru==="DOLAR"||"EURO"||"STERLİN"? setCreated(e.target.value):setCreated_altin(e.target.value)} //miktar yazılınca quantity set edilsin
                       name="tarih"
                     ></input>
                   </div>

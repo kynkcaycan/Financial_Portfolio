@@ -14,6 +14,7 @@ import ProfitProcesses from "./Pages/ProfitProcesses";
 
 function App() {
   const [doviz, setDoviz] = useState([]);
+  const [altin,setAltin]=useState([]);
 
   useEffect(() => {
     const getDoviz = async () => {
@@ -24,10 +25,22 @@ function App() {
         console.log(err);
       }
     };
-
+   
     getDoviz();
+    const getAltin = async () => {
+      try {
+        const response = await api.get("/api/v1/altin");
+      setAltin(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+   
+    getAltin();
   }, []);
 
+
+  
   return (
     <div className="App">
       <Typography variant="h1">My Portfolio</Typography>
@@ -40,12 +53,12 @@ function App() {
             <Route path="/instancePrices">
               <ProfitProcesses />
             </Route>
-
             <Route path="/add">
               <BuyingProcesses />
             </Route>
             <Route path="/portfolio">
-              <MyPortfolioPage doviz={doviz} />
+              <MyPortfolioPage data={{altin,doviz}}/>
+             
             </Route>
           </Switch>
         </div>

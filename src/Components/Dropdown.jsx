@@ -79,7 +79,7 @@ function Dropdown({ setStep, setDovizTuru }) {
                 variant="contained"
                 color="primary"
                 className="dropdown-item-alt"
-                onClick={() => clickBuying()}
+                onClick={() => clickBuying("GRAM")}
               >
                 Gram
               </Button>
@@ -87,18 +87,11 @@ function Dropdown({ setStep, setDovizTuru }) {
                 variant="contained"
                 color="primary"
                 className="dropdown-item-alt"
-                onClick={() => clickBuying()}
+                onClick={() => clickBuying("CEYREK")}
               >
                 Çeyrek
               </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                className="dropdown-item-alt"
-                onClick={() => clickBuying()}
-              >
-                Tam
-              </Button>
+             
             </div>
           )}
           <Button
