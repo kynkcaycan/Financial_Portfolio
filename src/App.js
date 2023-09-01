@@ -11,10 +11,12 @@ import ButonsMain from "./butonsMain";
 import MyPortfolioPage from "./Pages/myPortfolioPage";
 import BuyingProcesses from "./Pages/BuyingProcesses";
 import ProfitProcesses from "./Pages/ProfitProcesses";
+import ProfitPage from "./Pages/ProfitPage";
 
 function App() {
   const [doviz, setDoviz] = useState([]);
-  const [altin,setAltin]=useState([]);
+  const [altin, setAltin] = useState([]);
+  const [profit, setProfit] = useState([]);
 
   useEffect(() => {
     const getDoviz = async () => {
@@ -25,22 +27,30 @@ function App() {
         console.log(err);
       }
     };
-   
+
     getDoviz();
     const getAltin = async () => {
       try {
         const response = await api.get("/api/v1/altin");
-      setAltin(response.data);
+        setAltin(response.data);
       } catch (err) {
         console.log(err);
       }
     };
-   
+
     getAltin();
+    const getProfit = async () => {
+      try {
+        const response = await api.get("/api/v1/profit");
+        setProfit(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getProfit();
   }, []);
 
-
-  
   return (
     <div className="App">
       <Typography variant="h1">My Portfolio</Typography>
@@ -57,8 +67,10 @@ function App() {
               <BuyingProcesses />
             </Route>
             <Route path="/portfolio">
-              <MyPortfolioPage data={{altin,doviz}}/>
-             
+              <MyPortfolioPage data={{ altin, doviz }} />
+            </Route>
+            <Route path="/profitTable">
+              <ProfitPage data={{ profit }} />
             </Route>
           </Switch>
         </div>

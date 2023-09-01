@@ -1,27 +1,37 @@
-import React from 'react';
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import React from "react";
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+} from "@mui/material";
 
 function MyPortfolioPage({ data }) {
   const { altin, doviz } = data;
 
   // Hem altin hem doviz verilerini birleştirme
   const allData = [...altin, ...doviz];
- console.log(altin);
- console.log(altin);
+  console.log(altin);
+  console.log(altin);
   // Tarihe göre verileri sıralama
 
+  // Bir tarih stringini Date nesnesine çeviren fonksiyon
+  function parseDate(dateString) {
+    const [day, month, year] = dateString.split("/");
+    return new Date(`${year}-${month}-${day}`);
+  }
 
-// Bir tarih stringini Date nesnesine çeviren fonksiyon
-function parseDate(dateString) {
-  const [day, month, year] = dateString.split('/');
-  return new Date(`${year}-${month}-${day}`);
-}
+  // ...
 
-// ...
-
-allData.sort((a, b) => parseDate(b.created || b.created_altin) - parseDate(a.created || a.created_altin));
-
- 
+  allData.sort(
+    (a, b) =>
+      parseDate(b.created || b.created_altin) -
+      parseDate(a.created || a.created_altin)
+  );
 
   return (
     <div>
@@ -37,7 +47,6 @@ allData.sort((a, b) => parseDate(b.created || b.created_altin) - parseDate(a.cre
               <TableCell>Zaman</TableCell>
               <TableCell>Adet</TableCell>
               <TableCell>Birim Fiyatı</TableCell>
-              <TableCell>Kar Zarar Durumu</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -47,7 +56,6 @@ allData.sort((a, b) => parseDate(b.created || b.created_altin) - parseDate(a.cre
                 <TableCell>{item.created || item.created_altin}</TableCell>
                 <TableCell>{item.quantity || item.quantity_altin}</TableCell>
                 <TableCell>{item.unitPrice || item.unitPrice_altin}</TableCell>
-                <TableCell>kar durumu</TableCell>
               </TableRow>
             ))}
           </TableBody>
