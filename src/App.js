@@ -1,16 +1,13 @@
 // App.js
 import "./App.css"; // App.js içinde CSS dosyasını içe aktarıyorsunuz
 
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
 import api from "./api/axiosConfig";
 import ButonsMain from "./butonsMain";
 
-import MyPortfolioPage from "./Pages/myPortfolioPage";
 import BuyingProcesses from "./Pages/BuyingProcesses";
-import ProfitProcesses from "./Pages/ProfitProcesses";
 import ProfitPage from "./Pages/ProfitPage";
 import DrawerAppBar from "./components/DrawerAppBar";
 
@@ -54,15 +51,12 @@ function App() {
 
   return (
     <div className="App">
-       <DrawerAppBar/>
+      <DrawerAppBar />
       {/* <Typography className="h1-baslik" variant="h1">My Portfolio</Typography> */}
       <Router>
         <div className="middleBox">
-        <div className="middleBoxUst">
-            
-          </div>
+          <div className="middleBoxUst"></div>
           <Switch>
-          
             <Route exact path="/">
               <ButonsMain />
             </Route>

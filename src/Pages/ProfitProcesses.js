@@ -1,7 +1,6 @@
-import React from "react";
 import { Button, Grid } from "@mui/material";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function ProfitProcesses() {
   const [dolarData, setDolarData] = useState([]); // Sadece DOLAR verilerini saklayacağız
@@ -10,6 +9,14 @@ function ProfitProcesses() {
   const [g_goldData, setG_GoldData] = useState([]);
   const [q_goldData, setQ_GoldData] = useState([]);
   const [prices, setPrices] = useState({
+    //input alanları
+    gGold: 0, //gram altın
+    qGold: 0, //çeyrek altın
+    dolar: 0,
+    euro: 0,
+    sterlin: 0,
+  });
+  const [quantity, setQuantity] = useState({
     //input alanları
     gGold: 0, //gram altın
     qGold: 0, //çeyrek altın
@@ -82,12 +89,38 @@ function ProfitProcesses() {
     return totalProfit;
   }
 
+  /*function calculateTotalQuantity(data, value) {
+    let ourTotal = 0;
+    let totalQuantity = 0;
+
+    data.forEach((item) => {
+      ourTotal += item.quantity;
+    });
+     totalQuantity = ourTotal - value;
+    return totalQuantity;
+  }*/
+
   //hepsinin toplam kar zararlarını hesaplatıp değişkenlere atıyoruz
   const totalDolarValue = calculateTotal(dolarData, prices.dolar);
   const totalEuroValue = calculateTotal(euroData, prices.euro);
   const totalSterlinValue = calculateTotal(sterlinData, prices.sterlin);
   const totalG_GoldValue = calculateTotal(g_goldData, prices.gGold);
   const totalQ_GoldValue = calculateTotal(q_goldData, prices.qGold);
+
+  /*const totalDolarQuantity = calculateTotalQuantity(dolarData, quantity.dolar);
+  const totalEuroQuantity = calculateTotalQuantity(euroData, quantity.euro);
+  const totalSterlinQuantity = calculateTotalQuantity(
+    sterlinData,
+    quantity.sterlin
+  );
+  const totalG_GoldQuantity = calculateTotalQuantity(
+    g_goldData,
+    quantity.gGold
+  );
+  const totalQ_GoldQuantity = calculateTotalQuantity(
+    q_goldData,
+    quantity.qGold
+  );*/
 
   //onChange için handleInput'lar
   const handleInputDolar = (event) => {
@@ -105,6 +138,22 @@ function ProfitProcesses() {
   const handleInputQ_Gold = (event) => {
     setPrices({ ...prices, qGold: event.target.value });
   };
+  /*
+  const handleInputDolarQ = (event) => {
+    setQuantity({ ...quantity, dolar: event.target.value });
+  };
+  const handleInputEuroQ = (event) => {
+    setQuantity({ ...quantity, euro: event.target.value });
+  };
+  const handleInputSterlinQ = (event) => {
+    setQuantity({ ...quantity, sterlin: event.target.value });
+  };
+  const handleInputG_GoldQ = (event) => {
+    setQuantity({ ...quantity, gGold: event.target.value });
+  };
+  const handleInputQ_GoldQ = (event) => {
+    setQuantity({ ...quantity, qGold: event.target.value });
+  };*/
 
   //hesaplanan profitleri ve türlerini veri tabanına ekler
   function varliklarimaEkle(event) {
@@ -125,16 +174,16 @@ function ProfitProcesses() {
 
     clickProfit();
   }
-
+  /*
+  <p>Toplam Miktar (Dolar): {totalDolarValue}</p>
+  <p>Toplam Değer (Euro): {totalEuroValue}</p>
+  <p>Toplam Değer (Sterlin): {totalSterlinValue}</p>
+  <p>Toplam Değer (g gold): {totalG_GoldValue}</p>
+  <p>Toplam Değer (q gold): {totalQ_GoldValue}</p>
+*/
   return (
     <div>
       <h1>Anlık Veriler</h1>
-
-      <p>Toplam Değer (Dolar): {totalDolarValue}</p>
-      <p>Toplam Değer (Euro): {totalEuroValue}</p>
-      <p>Toplam Değer (Sterlin): {totalSterlinValue}</p>
-      <p>Toplam Değer (g gold): {totalG_GoldValue}</p>
-      <p>Toplam Değer (q gold): {totalQ_GoldValue}</p>
 
       <div className="form1">
         <div className="card">
