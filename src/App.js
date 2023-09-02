@@ -12,6 +12,7 @@ import MyPortfolioPage from "./Pages/myPortfolioPage";
 import BuyingProcesses from "./Pages/BuyingProcesses";
 import ProfitProcesses from "./Pages/ProfitProcesses";
 import ProfitPage from "./Pages/ProfitPage";
+import DrawerAppBar from "./components/DrawerAppBar";
 
 function App() {
   const [doviz, setDoviz] = useState([]);

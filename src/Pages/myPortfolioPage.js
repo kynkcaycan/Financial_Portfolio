@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Paper,
   Table,
@@ -8,57 +8,138 @@ import {
   TableHead,
   TableRow,
   Typography,
+  Checkbox,
+  Button,
 } from "@mui/material";
 
 function MyPortfolioPage({ data }) {
   const { altin, doviz } = data;
 
-  // Hem altin hem doviz verilerini birleştirme
+  // Altın ve döviz verilerini birleştir
   const allData = [...altin, ...doviz];
-  console.log(altin);
-  console.log(altin);
-  // Tarihe göre verileri sıralama
 
-  // Bir tarih stringini Date nesnesine çeviren fonksiyon
-  function parseDate(dateString) {
-    const [day, month, year] = dateString.split('/');
-    return new Date(`${year}-${month}-${day}`);
-  }
+  // Tablo sütunlarını tanımla
+  const columns = [
+    { id: "turu", label: "Tür" },
+    { id: "zaman", label: "Zaman" },
+    { id: "adet", label: "Adet" },
+    { id: "birimFiyati", label: "Birim Fiyatı" },
+    { id: "karZararDurumu", label: "Kar Zarar Durumu" },
+  ];
 
-  // ...
+  // Verileri tabloya uygun hale getir
+  const rows = allData.map((item, index) => ({
+    id: index,
+    turu: item.altinTuru || item.dovizTuru,
+    zaman: item.created || item.created_altin,
+    adet: item.quantity || item.quantity_altin,
+    birimFiyati: item.unitPrice || item.unitPrice_altin,
+    karZararDurumu: "kar durumu",
+  }));
 
-  allData.sort((a, b) => parseDate(b.created || b.created_altin) - parseDate(a.created || a.created_altin));
+  // Seçilen satırları takip etmek için bir state kullan
+  const [selectedRows, setSelectedRows] = useState([]);
+
+  // Satır seçimini yöneten bir işlev tanımla
+  const handleRowSelection = (rowId) => {
+    const selectedIndex = selectedRows.indexOf(rowId);
+    let newSelectedRows = [...selectedRows];
+
+    if (selectedIndex === -1) {
+      // Eğer seçili değilse, seçili satırlara ekle
+      newSelectedRows.push(rowId);
+    } else {
+      // Eğer zaten seçiliyse, seçili satırlardan çıkar
+      newSelectedRows.splice(selectedIndex, 1);
+    }
+
+    setSelectedRows(newSelectedRows);
+  };
+
+  // Seçili satırları silmek için bir işlev tanımla
+  const handleDeleteRows = async () => {
+    // Seçili satırları silmek için bir API isteği gönder
+    try {
+      const response = await fetch("/api/v1/altin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ rowIds: selectedRows }),
+      });
+
+      if (response.ok) {
+        // Başarılı silme işlemi sonrası UI'yi veya state'i güncelle
+        console.log("Satırlar başarıyla silindi");
+
+        // API isteği başarılı olduğunda seçili satırları temizle
+        setSelectedRows([]);
+
+        // Burada değişiklikleri yansıtmak için state'i veya veriyi güncelleyebilirsiniz
+      } else {
+        console.error("Satırları silme hatası");
+      }
+    } catch (error) {
+      console.error("Hata:", error);
+    }
+  };
 
   return (
-    
-    <div className='portfoliotableandtitle'> 
-     
-      <div >
+    <div className="portfoliotableandtitle">
+      <Typography variant="h4">Portföyüm</Typography>
+      <div>
         <TableContainer component={Paper}>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Tür</TableCell>
-                <TableCell>Zaman</TableCell>
-                <TableCell>Adet</TableCell>
-                <TableCell>Birim Fiyatı</TableCell>
-                <TableCell>Kar Zarar Durumu</TableCell>
+                <TableCell padding="checkbox">
+                  <Checkbox
+                    indeterminate={
+                      selectedRows.length > 0 && selectedRows.length < rows.length
+                    }
+                    checked={selectedRows.length === rows.length}
+                    onChange={() => {
+                      if (selectedRows.length === rows.length) {
+                        setSelectedRows([]);
+                      } else {
+                        setSelectedRows(rows.map((row) => row.id));
+                      }
+                    }}
+                  />
+                </TableCell>
+                {columns.map((column) => (
+                  <TableCell key={column.id}>{column.label}</TableCell>
+                ))}
               </TableRow>
             </TableHead>
             <TableBody>
-              {allData.map((item, index) => (
-                <TableRow key={index}>
-                  <TableCell>{item.altinTuru || item.dovizTuru}</TableCell>
-                  <TableCell>{item.created || item.created_altin}</TableCell>
-                  <TableCell>{item.quantity || item.quantity_altin}</TableCell>
-                  <TableCell>{item.unitPrice || item.unitPrice_altin}</TableCell>
-                  <TableCell>kar durumu</TableCell>
+              {rows.map((row) => (
+                <TableRow
+                  key={row.id}
+                  selected={selectedRows.includes(row.id)}
+                  onClick={() => handleRowSelection(row.id)}
+                >
+                  <TableCell padding="checkbox">
+                    <Checkbox
+                      checked={selectedRows.includes(row.id)}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        handleRowSelection(row.id);
+                      }}
+                    />
+                  </TableCell>
+                  {columns.map((column) => (
+                    <TableCell key={column.id}>{row[column.id]}</TableCell>
+                  ))}
                 </TableRow>
               ))}
             </TableBody>
           </Table>
         </TableContainer>
       </div>
+      <Button variant="contained" color="secondary" onClick={handleDeleteRows}>
+        Sil
+      </Button>
     </div>
   );
 }
