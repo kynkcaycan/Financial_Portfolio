@@ -1,62 +1,73 @@
 import React from "react";
-import { Button, Grid, TextField } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-import api from "../api/axiosConfig";
-
-
 function ProfitProcesses() {
-  const [profit, setProfit] = useState(0.0);
-  const [profitType, setProfitType] = useState("");
-
-  const [data, setData] = useState([]);
   const [dolarData, setDolarData] = useState([]); // Sadece DOLAR verilerini saklayacağız
-
+  const [euroData, setEuroData] = useState([]);
+  const [sterlinData, setSterlinData] = useState([]);
+  const [g_goldData, setG_GoldData] = useState([]);
+  const [q_goldData, setQ_GoldData] = useState([]);
   const [prices, setPrices] = useState({
-    //input alanları için
-    gramAltin: 0,
-    tamAltin: 0,
-    ceyrekAltin: 0,
+    //input alanları
+    gGold: 0, //gram altın
+    qGold: 0, //çeyrek altın
     dolar: 0,
     euro: 0,
     sterlin: 0,
   });
 
-  const handleInput = (event) => {
-    //onChange için
-    setPrices({ ...prices, [event.target.name]: event.target.value });
+  const clickProfit = () => {
+    window.location.href = "/profitTable";
   };
 
-  //const [doviz, setDoviz] = useState([]);
-
+  //dövizleri türüne göre filtreleyerek çekme
   useEffect(() => {
-    //doviz türü dolar olanları filtreleyip çekiyoruz. setdolardata ya atıyoruz
     axios
       .get("http://localhost:8080/api/v1/doviz")
       .then((response) => {
-        const filteredData = response.data.filter(
+        const filteredDolarData = response.data.filter(
           (item) => item.dovizTuru === "DOLAR"
         );
-        setDolarData(filteredData);
+        setDolarData(filteredDolarData);
+
+        const filteredEuroData = response.data.filter(
+          (item) => item.dovizTuru === "EURO"
+        );
+        setEuroData(filteredEuroData);
+
+        const filteredSterlinData = response.data.filter(
+          (item) => item.dovizTuru === "STERLIN"
+        );
+        setSterlinData(filteredSterlinData);
+      })
+      .catch((error) => {
+        console.error("Veri çekme hatası:", error);
+      });
+  }, []);
+  //altınları türüne göre filtreleyerek çekme
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/api/v1/altin")
+      .then((response) => {
+        const filteredG_GoldData = response.data.filter(
+          (item) => item.altinTuru === "GRAM"
+        );
+        setG_GoldData(filteredG_GoldData);
+
+        const filteredQ_GoldData = response.data.filter(
+          (item) => item.altinTuru === "CEYREK"
+        );
+        setQ_GoldData(filteredQ_GoldData);
       })
       .catch((error) => {
         console.error("Veri çekme hatası:", error);
       });
   }, []);
 
-  /*
-  useEffect(() => {
-    axios
-      .get('"http://localhost:8080/api/v1/doviz"')
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.error("Veri çekme hatası:", error);
-      });
-  }, []);*/
-  function calculateTotal(data) {
+  //toplam kar-zararı hesaplama
+  function calculateTotal(data, value) {
     let ourTotal = 0;
     let newTotal = 0;
     let totalProfit = 0;
@@ -64,33 +75,66 @@ function ProfitProcesses() {
     data.forEach((item) => {
       //sadece dolarları attığımız datanın elemanlarına ulaşıyoruz
       ourTotal += item.unitPrice * item.quantity;
-      newTotal += prices.dolar * item.quantity;
+      newTotal += value * item.quantity;
     });
     totalProfit = newTotal - ourTotal;
 
     return totalProfit;
   }
-  const totalDolarValue = calculateTotal(dolarData);
+
+  //hepsinin toplam kar zararlarını hesaplatıp değişkenlere atıyoruz
+  const totalDolarValue = calculateTotal(dolarData, prices.dolar);
+  const totalEuroValue = calculateTotal(euroData, prices.euro);
+  const totalSterlinValue = calculateTotal(sterlinData, prices.sterlin);
+  const totalG_GoldValue = calculateTotal(g_goldData, prices.gGold);
+  const totalQ_GoldValue = calculateTotal(q_goldData, prices.qGold);
+
+  //onChange için handleInput'lar
+  const handleInputDolar = (event) => {
+    setPrices({ ...prices, dolar: event.target.value });
+  };
+  const handleInputEuro = (event) => {
+    setPrices({ ...prices, euro: event.target.value });
+  };
+  const handleInputSterlin = (event) => {
+    setPrices({ ...prices, sterlin: event.target.value });
+  };
+  const handleInputG_Gold = (event) => {
+    setPrices({ ...prices, gGold: event.target.value });
+  };
+  const handleInputQ_Gold = (event) => {
+    setPrices({ ...prices, qGold: event.target.value });
+  };
+
+  //hesaplanan profitleri ve türlerini veri tabanına ekler
   function varliklarimaEkle(event) {
-    //calculateTotal(data);
     event.preventDefault();
-    axios.post(
-      "http://localhost:8080/api/v1/profit",
-      // post
-      {
-        profitType: "DOLAR",
-        profit: totalDolarValue,
-      }
-    );
+
+    axios.post("http://localhost:8080/api/v1/profit", {
+      profitTypeDolar: "DOLAR",
+      profitTypeEuro: "EURO",
+      profitTypeSterlin: "STERLIN",
+      profitTypeG_Gold: "GRAM",
+      profitTypeQ_Gold: "CEYREK",
+      profitDolar: totalDolarValue,
+      profitEuro: totalEuroValue,
+      profitSterlin: totalSterlinValue,
+      profitG_Gold: totalG_GoldValue,
+      profitQ_Gold: totalQ_GoldValue,
+    });
+
+    clickProfit();
   }
 
-  //profit = setProfit(totalDolarValue);
-  //profitType = setProfitType("DOLAR");
   return (
     <div>
-      <h1>Dolar Verileri</h1>
+      <h1>Anlık Veriler</h1>
 
       <p>Toplam Değer (Dolar): {totalDolarValue}</p>
+      <p>Toplam Değer (Euro): {totalEuroValue}</p>
+      <p>Toplam Değer (Sterlin): {totalSterlinValue}</p>
+      <p>Toplam Değer (g gold): {totalG_GoldValue}</p>
+      <p>Toplam Değer (q gold): {totalQ_GoldValue}</p>
 
       <div className="form1">
         <div className="card">
@@ -103,7 +147,7 @@ function ProfitProcesses() {
                     type="number"
                     placeholder="gram altın fiyatını giriniz"
                     class="form-control"
-                    onChange={handleInput} //miktar yazılınca quantity set edilsin
+                    onChange={handleInputG_Gold} //miktar yazılınca quantity set edilsin
                     name="gramAltin"
                   ></input>
                 </div>
@@ -113,28 +157,18 @@ function ProfitProcesses() {
                     type="number"
                     placeholder="çeyrek altın giriniz"
                     className="form-control"
-                    onChange={handleInput}
+                    onChange={handleInputQ_Gold}
                     name="ceyrekAltin"
                   ></input>
                 </div>
-                <div className="form-items">
-                  tam altın BF:
-                  <input
-                    type="text"
-                    placeholder="tam altın giriniz"
-                    className="form-control"
-                    onChange={handleInput}
-                    name="tamAltin"
-                  ></input>
-                </div>
+
                 <div className="form-items">
                   Dolar BF:
                   <input
                     type="text"
                     placeholder="dolar fiyatı giriniz"
                     className="form-control"
-                    onChange={handleInput}
-                    //  {...setProfitType("DOLAR")} //
+                    onChange={handleInputDolar}
                     name="dolar"
                   ></input>
                 </div>
@@ -144,7 +178,7 @@ function ProfitProcesses() {
                     type="text"
                     placeholder="tam altın giriniz"
                     className="form-control"
-                    onChange={handleInput} //
+                    onChange={handleInputEuro}
                     name="euro"
                   ></input>
                 </div>
@@ -154,7 +188,7 @@ function ProfitProcesses() {
                     type="text"
                     placeholder="sterlin fiyat giriniz"
                     className="form-control"
-                    onChange={handleInput} //
+                    onChange={handleInputSterlin}
                     name="sterlin"
                   ></input>
                 </div>

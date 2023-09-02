@@ -8,8 +8,6 @@ import Dropdown from "../components/Dropdown";
 const BuyingProcesses = () => {
   const [step, setStep] = useState(0);
 
-
-
   const [dovizTuru, setDovizTuru] = useState("");
   const [unitPrice, setUnitPrice] = useState(0.0);
   const [created, setCreated] = useState("");
@@ -27,36 +25,36 @@ const BuyingProcesses = () => {
   // Tüm state'leri tanımla...
 
   const varliklarimaEkle = async (event) => {
-
-
-if(dovizTuru==="GRAM"||dovizTuru=="CEYREK"){
-  await axios.post(
-    "http://localhost:8080/api/v1/altin",
-    // post
-    {
-      altinTuru: dovizTuru,
-      unitPrice_altin: unitPrice,
-      created_altin: created,
-      quantity_altin: quantity,
+    if (dovizTuru === "GRAM" || dovizTuru == "CEYREK") {
+      await axios.post(
+        "http://localhost:8080/api/v1/altin",
+        // post
+        {
+          altinTuru: dovizTuru,
+          unitPrice: unitPrice,
+          created_altin: created,
+          quantity: quantity,
+        }
+      );
+      reset();
+    } else if (
+      dovizTuru === "DOLAR" ||
+      dovizTuru === "STERLIN" ||
+      dovizTuru === "EURO"
+    ) {
+      await axios.post(
+        "http://localhost:8080/api/v1/doviz",
+        // post
+        {
+          dovizTuru: dovizTuru,
+          unitPrice: unitPrice,
+          created: created,
+          quantity: quantity,
+        }
+      );
+      reset();
     }
-  );
-  reset();
-}else if(dovizTuru==="DOLAR"||dovizTuru==="STERLİN"||dovizTuru==="EURO"){
-  await axios.post(
-    "http://localhost:8080/api/v1/doviz",
-    // post
-    {
-      dovizTuru: dovizTuru,
-      unitPrice: unitPrice,
-      created: created,
-      quantity: quantity,
-    }
-  );
-  reset();
-
-}
-  }
-
+  };
 
   const showingComponent = () => {
     if (step === 0) {
@@ -77,7 +75,11 @@ if(dovizTuru==="GRAM"||dovizTuru=="CEYREK"){
                       type="number"
                       placeholder="ürün miktarı giriniz"
                       class="form-control"
-                      onChange={(e) => dovizTuru==="DOLAR"||"EURO"||"STERLİN"? setQuantity(e.target.value):setQuantity_altin(e.target.value)} //miktar yazılınca quantity set edilsin
+                      onChange={(e) =>
+                        dovizTuru === "DOLAR" || "EURO" || "STERLIN"
+                          ? setQuantity(e.target.value)
+                          : setQuantity_altin(e.target.value)
+                      } //miktar yazılınca quantity set edilsin
                       name="quantity"
                     ></input>
                   </div>
@@ -87,7 +89,11 @@ if(dovizTuru==="GRAM"||dovizTuru=="CEYREK"){
                       type="number"
                       placeholder="birim fiyatı giriniz"
                       className="form-control"
-                      onChange={(e) => dovizTuru==="DOLAR"||"EURO"||"STERLİN"? setUnitPrice(e.target.value):setUnitPrice_altin(e.target.value)} //miktar yazılınca quantity set edilsin
+                      onChange={(e) =>
+                        dovizTuru === "DOLAR" || "EURO" || "STERLIN"
+                          ? setUnitPrice(e.target.value)
+                          : setUnitPrice_altin(e.target.value)
+                      } //miktar yazılınca quantity set edilsin
                       name="unitPrice"
                     ></input>
                   </div>
@@ -97,8 +103,11 @@ if(dovizTuru==="GRAM"||dovizTuru=="CEYREK"){
                       type="text"
                       placeholder="tarih giriniz"
                       className="form-control"
-                      onChange={(e) => 
-                        dovizTuru==="DOLAR"||"EURO"||"STERLİN"? setCreated(e.target.value):setCreated_altin(e.target.value)} //miktar yazılınca quantity set edilsin
+                      onChange={(e) =>
+                        dovizTuru === "DOLAR" || "EURO" || "STERLIN"
+                          ? setCreated(e.target.value)
+                          : setCreated_altin(e.target.value)
+                      } //miktar yazılınca quantity set edilsin
                       name="tarih"
                     ></input>
                   </div>
