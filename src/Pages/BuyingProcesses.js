@@ -27,7 +27,7 @@ const BuyingProcesses = () => {
   // Tüm state'leri tanımla...
 
   const varliklarimaEkle = async (event) => {
-<<<<<<< HEAD
+
 
 if(dovizTuru==="GRAM"||dovizTuru=="CEYREK"){
   await axios.post(
@@ -57,21 +57,6 @@ if(dovizTuru==="GRAM"||dovizTuru=="CEYREK"){
 }
   }
 
-=======
-    //event.preventDefault();
-    await axios.post(
-      "http://localhost:8080/api/v1/doviz",
-      // post
-      {
-        dovizTuru: dovizTuru,
-        unitPrice: unitPrice,
-        created: created,
-        quantity: quantity,
-      }
-    );
-    reset();
-  };
->>>>>>> master
 
   const showingComponent = () => {
     if (step === 0) {

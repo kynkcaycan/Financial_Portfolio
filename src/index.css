@@ -1,3 +1,5 @@
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -6,65 +8,64 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   align-items: center;
-  background-color: #f9f2e1;
-  /* background-image: url('./src/fishwp.png'); */
+ 
+
+
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-/* .butons{
-  display: flex;
-  flex-direction: column;
-  max-width: 40%;
-  margin: 40px auto;
-  padding: 20px;
-} */
+
 .middleBox {
   text-align: center;
-  min-height: 50%;
   align-items: center;
   place-items: center;
   justify-content: flex;
-  max-width: 80%;
-  min-width: 80%;
-
-  margin: 40px auto;
-  padding: 20px;
-  background-color: #e0ddd5;
-  max-width: 60%;
-  margin: 40px auto;
+  max-width: 70%;
+  min-width: 70%;
+  margin: 7% auto; /*middleboxnekadarasagidaolsun*/
+  background-color: #848484; 
+  max-height:60%;
+  min-height: 60%;
   padding: 20px;
   padding-bottom: 20px;
   flex-direction: column;
   display: flex;
-  justify-content: center;
+  box-shadow: 5px 10px 30px rgba(0, 0, 0, 0.1);
+  margin-bottom: 50%
+
+
 }
-.middleBox:hover {
+/* .middleBox:hover {
   box-shadow: 1px 3px 5px rgba(206, 22, 22, 0.1);
-}
+} */
 Button {
-  margin-bottom: 3%;
-  max-width: 60%;
+  margin-bottom: 3%; 
   margin: 40px auto;
   padding: 20px;
-  color: rgb(6, 6, 50);
+
 }
 .mainButons Button {
   flex-direction: row;
   margin-top: 6%;
-  background-color: rgb(6, 6, 50);
-  min-width: 100%;
+  background-color:#063009;
+  min-width: 100%;  
+
 }
-.middleBox buysellport {
+.buysellport {
+  padding: 0;
   align-content: center;
+  padding: 10%;
 }
 .baslikaltibosluk h1 {
-  padding-bottom: 20%;
+  padding-bottom: 5%;
 }
 .dropdown {
   padding-top: 30%;
+
 }
 .form1 .card .card-body .form-group .form-items {
   padding: 10px;
@@ -77,4 +78,37 @@ Button {
   cursor: pointer;
   justify-content: space-between;
   float: right;
+}
+p {
+  text-indent: 50px;
+  text-align: justify;
+  letter-spacing: 3px;
+  color: #333;
+}
+
+.middleBoxUst{
+  
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgb(0, 0, 0);
+  height: 70px;
+  width: 100%;
+}
+.portfoliotableandtitle {
+  width: 100%;
+  height: 100%;
+  /* position: absolute;c */
+  top: 70px; /* middleBoxUst'un yüksekliği kadar aşağıda başlasın */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff; /* İçerik arkaplan rengi */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-ccontent: flex-start; İçeriği üstten başlat */
+  padding: 20px;
+  box-shadow: 5px 10px 30px rgba(0, 0, 0, 0.1);
+  overflow-y: scroll; /* Dikey kaydırmayı etkinleştirir */
 }

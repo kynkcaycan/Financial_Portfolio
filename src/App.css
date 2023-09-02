@@ -3,6 +3,7 @@
   text-align: center;
   min-height: 100vh;
   /* max-width: 40%; */
+
   align-items: center;
   /* display: flex; */
  /* background-image: url('C:\\Users\\aycan\\Downloads\\fishwp.png');*/
@@ -12,13 +13,17 @@
   background-position: center;
   background-repeat: no-repeat;
   display: block;
- 
-
-
+  background-image: url('monitor.jpg'); /* Arka plan resminin URL'sini belirtin */
+   /* Resmi ekranın boyutuna sığacak şekilde ayarlar */
+  /* Resmin tekrar edilmemesini sağlar */
+  background-attachment: fixed;
+  
+  background-size: 100% 100%;
+  background-position: top;/* Resmi ekranın boyutuna sığacak şekilde ayarlar */
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 0%;
   pointer-events: none;
 }
 
@@ -51,7 +56,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-p{
-  color: rgb(186, 226, 43);
 }

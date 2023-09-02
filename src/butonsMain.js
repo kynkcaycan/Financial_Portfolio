@@ -14,8 +14,10 @@ const ButonsMain = () => {
 
   return (
     <div className="buysellport">
+   
       <div class="mainButons">
         {" "}
+
         <Button onClick={clickBuy} variant="contained" color="success">
           Alım Ekle
         </Button>

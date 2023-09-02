@@ -22,7 +22,9 @@ function Dropdown({ setStep, setDovizTuru }) {
     setDovizTuru(dovizTuru);
   };
   return (
+    
     <div className="dropdown">
+      <p>Lütfen  aşağıdaki buton yardımı ekleme yapacağınız türü seçiniz  </p>
       <div className="dropdown-btn" onClick={(e) => setIsActive(!isActive)}>
         Finans Türü
         <span className="fas fa-caret-down"></span>

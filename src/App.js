@@ -11,7 +11,8 @@ import ButonsMain from "./butonsMain";
 import MyPortfolioPage from "./Pages/myPortfolioPage";
 import BuyingProcesses from "./Pages/BuyingProcesses";
 import ProfitProcesses from "./Pages/ProfitProcesses";
-
+import AppBarComponent from "./components/DrawerAppBar";
+import DrawerAppBar from "./components/DrawerAppBar";
 function App() {
   const [doviz, setDoviz] = useState([]);
   const [altin,setAltin]=useState([]);
@@ -43,10 +44,15 @@ function App() {
   
   return (
     <div className="App">
-      <Typography variant="h1">My Portfolio</Typography>
+       <DrawerAppBar/>
+      {/* <Typography className="h1-baslik" variant="h1">My Portfolio</Typography> */}
       <Router>
         <div className="middleBox">
+        <div className="middleBoxUst">
+            
+          </div>
           <Switch>
+          
             <Route exact path="/">
               <ButonsMain />
             </Route>
