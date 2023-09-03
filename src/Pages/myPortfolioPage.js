@@ -76,9 +76,18 @@ function MyPortfolioPage({ data }) {
 
   return (
     <div className="portfoliotableandtitle">
-      <Typography variant="h4">Portföyüm</Typography>
-      <div>
-        <TableContainer component={Paper}>
+       <Typography
+            fontFamily={'EB Garamond'}
+            variant="h6"
+            component="div"
+            fontSize={'26px'}
+            paddingBottom={'10px'}
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+          >
+            PORTFOY
+          </Typography>
+      <div className="portfolio">
+        <TableContainer component={Paper} style={{ maxHeight: '300px', marginBottom: '20px', backgroundColor: '#e1e1e1' }}>
           <Table>
             <TableHead>
               <TableRow>
@@ -108,12 +117,13 @@ function MyPortfolioPage({ data }) {
                 <TableRow
                   key={veri.id}
                   selected={selectedRows.includes(veri.id)}
-                  onClick={() => handleCheckboxClick(veri.id)}
+                  onClick={(event) => handleCheckboxClick(event, veri.id)}
+                  style={{ cursor: 'pointer' }} // Checkbox'a tıklama olayını engelle
                 >
                   <TableCell padding="checkbox">
                     <Checkbox
                       checked={selectedRows.includes(veri.id)}
-                      onClick={(event) => handleCheckboxClick(event, veri.id)}
+                      onClick={(event) => event.stopPropagation()} // Checkbox'a tıklamada sadece checkbox olayını engelle
                     />
                   </TableCell>
                   {columns.map((column) => (
@@ -127,7 +137,6 @@ function MyPortfolioPage({ data }) {
       </div>
       <Button
         variant="contained"
-        color="secondary"
         onClick={handleDeleteClick}
         disabled={selectedRows.length === 0}
       >

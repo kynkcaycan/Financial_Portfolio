@@ -68,7 +68,7 @@ const BuyingProcesses = () => {
         <div className="form">
           <div className="card">
             <div className="card-header">
-              <h3>yatırım bilgileri</h3>
+              <h3>Yatırım Bilgileri</h3>
             </div>
             <div className="card-body">
               <form onSubmit={handleSubmit(varliklarimaEkle)}>
