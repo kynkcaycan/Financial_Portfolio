@@ -42,7 +42,7 @@ function MyPortfolioPage({ data }) {
   }, []);
 
   const columns = [
-    { id: "dovizTuru", label: "Türü" },
+    { id: "tur", label: "Türü" },
     { id: "unitPrice", label: "Birim Fiyatı" },
     { id: "created", label: "Oluşturulma Tarihi" },
     { id: "quantity", label: "Miktar" },
@@ -62,6 +62,7 @@ function MyPortfolioPage({ data }) {
       // Seçilen satırları API'den sil
       await Promise.all(
         selectedRows.map(async (id) => {
+          await api.delete(`/api/v1/altin/${id}`);
           await api.delete(`/api/v1/doviz/${id}`);
         })
       );

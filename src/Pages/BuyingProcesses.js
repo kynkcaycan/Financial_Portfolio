@@ -1,9 +1,9 @@
 import { Button, Grid } from "@mui/material";
-import "./BuyingProcesses.css";
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import axios from "axios";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import Dropdown from "../components/Dropdown";
+import "./BuyingProcesses.css";
 
 const BuyingProcesses = () => {
   const [step, setStep] = useState(0);
@@ -18,8 +18,11 @@ const BuyingProcesses = () => {
   const [unitPrice_altin, setUnitPrice_altin] = useState(0.0);
   const [created_altin, setCreated_altin] = useState("");
   const [quantity_altin, setQuantity_altin] = useState(0.0);
-  const clickBuyMenu = () => {
-    window.location.href = "/buying";
+  const clickMainMenu = () => {
+    window.location.href = "/";
+  };
+  const clickMenu = () => {
+    window.location.href = "/add";
   };
 
   // Tüm state'leri tanımla...
@@ -30,9 +33,9 @@ const BuyingProcesses = () => {
         "http://localhost:8080/api/v1/altin",
         // post
         {
-          altinTuru: dovizTuru,
+          tur: dovizTuru,
           unitPrice: unitPrice,
-          created_altin: created,
+          created: created,
           quantity: quantity,
         }
       );
@@ -46,13 +49,14 @@ const BuyingProcesses = () => {
         "http://localhost:8080/api/v1/doviz",
         // post
         {
-          dovizTuru: dovizTuru,
+          tur: dovizTuru,
           unitPrice: unitPrice,
           created: created,
           quantity: quantity,
         }
       );
       reset();
+      clickMenu();
     }
   };
 
@@ -128,9 +132,9 @@ const BuyingProcesses = () => {
                       variant="contained"
                       color="primary"
                       className="dropdown-item"
-                      onClick={clickBuyMenu}
+                      onClick={clickMainMenu}
                     >
-                      Ekle+
+                      Ana Sayfa
                     </Button>
                   </Grid>
                 </Grid>

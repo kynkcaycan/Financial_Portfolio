@@ -35,17 +35,17 @@ function ProfitProcesses() {
       .get("http://localhost:8080/api/v1/doviz")
       .then((response) => {
         const filteredDolarData = response.data.filter(
-          (item) => item.dovizTuru === "DOLAR"
+          (item) => item.tur === "DOLAR"
         );
         setDolarData(filteredDolarData);
 
         const filteredEuroData = response.data.filter(
-          (item) => item.dovizTuru === "EURO"
+          (item) => item.tur === "EURO"
         );
         setEuroData(filteredEuroData);
 
         const filteredSterlinData = response.data.filter(
-          (item) => item.dovizTuru === "STERLIN"
+          (item) => item.tur === "STERLIN"
         );
         setSterlinData(filteredSterlinData);
       })
@@ -59,12 +59,12 @@ function ProfitProcesses() {
       .get("http://localhost:8080/api/v1/altin")
       .then((response) => {
         const filteredG_GoldData = response.data.filter(
-          (item) => item.altinTuru === "GRAM"
+          (item) => item.tur === "GRAM"
         );
         setG_GoldData(filteredG_GoldData);
 
         const filteredQ_GoldData = response.data.filter(
-          (item) => item.altinTuru === "CEYREK"
+          (item) => item.tur === "CEYREK"
         );
         setQ_GoldData(filteredQ_GoldData);
       })
