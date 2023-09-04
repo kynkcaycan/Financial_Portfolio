@@ -53,7 +53,6 @@ function App() {
   return (
     <div className="App">
       <DrawerAppBar />
-      {/* <Typography className="h1-baslik" variant="h1">My Portfolio</Typography> */}
       <Router>
         <div className="middleBox">
           <div className="middleBoxUst"></div>
@@ -76,6 +75,7 @@ function App() {
           </Switch>
         </div>
       </Router>
+      <div className="bosluk"></div>
     </div>
   );
 }

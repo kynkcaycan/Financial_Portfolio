@@ -10,7 +10,7 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import api from "../api/axiosConfig";
 
 function MyPortfolioPage({ data }) {
@@ -31,15 +31,7 @@ function MyPortfolioPage({ data }) {
     return row;
   });
 
-  const [veriler, setVeriler] = useState([]);
   const [selectedRows, setSelectedRows] = useState([]);
-
-  useEffect(() => {
-    // API'den verileri çekin ve state'e atayın
-    api.get("/api/v1/doviz").then((response) => {
-      setVeriler(response.data);
-    });
-  }, []);
 
   const columns = [
     { id: "tur", label: "Türü" },
@@ -66,7 +58,6 @@ function MyPortfolioPage({ data }) {
           await api.delete(`/api/v1/doviz/${id}`);
         })
       );
-
       // Silme işlemi başarılıysa, seçili satırları temizle
       setSelectedRows([]);
     } catch (error) {
@@ -76,18 +67,25 @@ function MyPortfolioPage({ data }) {
 
   return (
     <div className="portfoliotableandtitle">
-       <Typography
-            fontFamily={'EB Garamond'}
-            variant="h6"
-            component="div"
-            fontSize={'26px'}
-            paddingBottom={'10px'}
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-          >
-            PORTFOY
-          </Typography>
+      <Typography
+        fontFamily={"EB Garamond"}
+        variant="h6"
+        component="div"
+        fontSize={"26px"}
+        paddingBottom={"10px"}
+        sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+      >
+        PORTFOY
+      </Typography>
       <div className="portfolio">
-        <TableContainer component={Paper} style={{ maxHeight: '300px', marginBottom: '20px', backgroundColor: '#e1e1e1' }}>
+        <TableContainer
+          component={Paper}
+          style={{
+            maxHeight: "300px",
+            marginBottom: "20px",
+            backgroundColor: "#e1e1e1",
+          }}
+        >
           <Table>
             <TableHead>
               <TableRow>
@@ -118,7 +116,7 @@ function MyPortfolioPage({ data }) {
                   key={veri.id}
                   selected={selectedRows.includes(veri.id)}
                   onClick={(event) => handleCheckboxClick(event, veri.id)}
-                  style={{ cursor: 'pointer' }} // Checkbox'a tıklama olayını engelle
+                  style={{ cursor: "pointer" }}
                 >
                   <TableCell padding="checkbox">
                     <Checkbox

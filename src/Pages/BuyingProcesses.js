@@ -1,4 +1,4 @@
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -18,6 +18,7 @@ const BuyingProcesses = () => {
   const [unitPrice_altin, setUnitPrice_altin] = useState(0.0);
   const [created_altin, setCreated_altin] = useState("");
   const [quantity_altin, setQuantity_altin] = useState(0.0);
+
   const clickMainMenu = () => {
     window.location.href = "/";
   };
@@ -25,21 +26,14 @@ const BuyingProcesses = () => {
     window.location.href = "/add";
   };
 
-  // Tüm state'leri tanımla...
-
   const varliklarimaEkle = async (event) => {
     if (dovizTuru === "GRAM" || dovizTuru == "CEYREK") {
-      await axios.post(
-        "http://localhost:8080/api/v1/altin",
-        // post
-        {
-          tur: dovizTuru,
-          unitPrice: unitPrice,
-          created: created,
-          quantity: quantity,
-        }
-      );
-      reset();
+      await axios.post("http://localhost:8080/api/v1/altin", {
+        tur: dovizTuru,
+        unitPrice: unitPrice,
+        created: created,
+        quantity: quantity,
+      });
     } else if (
       dovizTuru === "DOLAR" ||
       dovizTuru === "STERLIN" ||
@@ -47,7 +41,7 @@ const BuyingProcesses = () => {
     ) {
       await axios.post(
         "http://localhost:8080/api/v1/doviz",
-        // post
+
         {
           tur: dovizTuru,
           unitPrice: unitPrice,
@@ -55,7 +49,7 @@ const BuyingProcesses = () => {
           quantity: quantity,
         }
       );
-      reset();
+
       clickMenu();
     }
   };
@@ -68,13 +62,22 @@ const BuyingProcesses = () => {
         <div className="form">
           <div className="card">
             <div className="card-header">
-              <h3>Yatırım Bilgileri</h3>
+              <Typography
+                fontFamily={"EB Garamond"}
+                variant="h6"
+                component="div"
+                fontSize={"26px"}
+                paddingBottom={"10px"}
+                sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+              >
+                EKLE
+              </Typography>
             </div>
             <div className="card-body">
               <form onSubmit={handleSubmit(varliklarimaEkle)}>
                 <div className="form-group">
                   <div className="form-items">
-                    Ürün miktarı:
+                    Ürün Miktarı:
                     <input
                       type="number"
                       placeholder="ürün miktarı giriniz"
@@ -88,7 +91,7 @@ const BuyingProcesses = () => {
                     ></input>
                   </div>
                   <div className="form-items">
-                    Ürün fiyatı:
+                    Ürün Fiyatı:
                     <input
                       type="number"
                       placeholder="birim fiyatı giriniz"
@@ -102,7 +105,7 @@ const BuyingProcesses = () => {
                     ></input>
                   </div>
                   <div className="form-items">
-                    alınan tarih
+                    Alınan Tarih:
                     <input
                       type="text"
                       placeholder="tarih giriniz"
@@ -111,7 +114,7 @@ const BuyingProcesses = () => {
                         dovizTuru === "DOLAR" || "EURO" || "STERLIN"
                           ? setCreated(e.target.value)
                           : setCreated_altin(e.target.value)
-                      } //miktar yazılınca quantity set edilsin
+                      }
                       name="tarih"
                     ></input>
                   </div>

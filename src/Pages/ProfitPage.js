@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Paper,
   Table,
@@ -9,25 +8,37 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
+import React from "react";
 
 function ProfitPage({ data }) {
-  // Doviz verilerini kullanabilirsiniz
-  // console.log("Doviz Verileri:", profit);
-
   const { profit } = data;
   const allData = [...profit];
   return (
-    <div>
-      <div className="baslikaltibosluk">
-        <h1>Portföyüm</h1>
-      </div>
+    <div className="portfoliotableandtitle">
+      <Typography
+        fontFamily={"EB Garamond"}
+        variant="h6"
+        component="div"
+        fontSize={"26px"}
+        paddingBottom={"10px"}
+        sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+      >
+        KAR-ZARAR DURUMU
+      </Typography>
 
-      <TableContainer component={Paper}>
+      <TableContainer
+        component={Paper}
+        style={{
+          maxHeight: "300px",
+          marginBottom: "20px",
+          backgroundColor: "#e1e1e1",
+        }}
+      >
         <Table>
           <TableHead>
             <TableRow>
               <TableCell>Tür</TableCell>
-              <TableCell>Kar Zarar Durumu</TableCell>
+              <TableCell>Kar-Zarar Durumu</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

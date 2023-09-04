@@ -1,4 +1,4 @@
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
@@ -9,17 +9,8 @@ function ProfitProcesses() {
   const [g_goldData, setG_GoldData] = useState([]);
   const [q_goldData, setQ_GoldData] = useState([]);
   const [prices, setPrices] = useState({
-    //input alanları
-    gGold: 0, //gram altın
-    qGold: 0, //çeyrek altın
-    dolar: 0,
-    euro: 0,
-    sterlin: 0,
-  });
-  const [quantity, setQuantity] = useState({
-    //input alanları
-    gGold: 0, //gram altın
-    qGold: 0, //çeyrek altın
+    gGold: 0,
+    qGold: 0,
     dolar: 0,
     euro: 0,
     sterlin: 0,
@@ -53,6 +44,7 @@ function ProfitProcesses() {
         console.error("Veri çekme hatası:", error);
       });
   }, []);
+
   //altınları türüne göre filtreleyerek çekme
   useEffect(() => {
     axios
@@ -89,38 +81,12 @@ function ProfitProcesses() {
     return totalProfit;
   }
 
-  /*function calculateTotalQuantity(data, value) {
-    let ourTotal = 0;
-    let totalQuantity = 0;
-
-    data.forEach((item) => {
-      ourTotal += item.quantity;
-    });
-     totalQuantity = ourTotal - value;
-    return totalQuantity;
-  }*/
-
   //hepsinin toplam kar zararlarını hesaplatıp değişkenlere atıyoruz
   const totalDolarValue = calculateTotal(dolarData, prices.dolar);
   const totalEuroValue = calculateTotal(euroData, prices.euro);
   const totalSterlinValue = calculateTotal(sterlinData, prices.sterlin);
   const totalG_GoldValue = calculateTotal(g_goldData, prices.gGold);
   const totalQ_GoldValue = calculateTotal(q_goldData, prices.qGold);
-
-  /*const totalDolarQuantity = calculateTotalQuantity(dolarData, quantity.dolar);
-  const totalEuroQuantity = calculateTotalQuantity(euroData, quantity.euro);
-  const totalSterlinQuantity = calculateTotalQuantity(
-    sterlinData,
-    quantity.sterlin
-  );
-  const totalG_GoldQuantity = calculateTotalQuantity(
-    g_goldData,
-    quantity.gGold
-  );
-  const totalQ_GoldQuantity = calculateTotalQuantity(
-    q_goldData,
-    quantity.qGold
-  );*/
 
   //onChange için handleInput'lar
   const handleInputDolar = (event) => {
@@ -138,22 +104,6 @@ function ProfitProcesses() {
   const handleInputQ_Gold = (event) => {
     setPrices({ ...prices, qGold: event.target.value });
   };
-  /*
-  const handleInputDolarQ = (event) => {
-    setQuantity({ ...quantity, dolar: event.target.value });
-  };
-  const handleInputEuroQ = (event) => {
-    setQuantity({ ...quantity, euro: event.target.value });
-  };
-  const handleInputSterlinQ = (event) => {
-    setQuantity({ ...quantity, sterlin: event.target.value });
-  };
-  const handleInputG_GoldQ = (event) => {
-    setQuantity({ ...quantity, gGold: event.target.value });
-  };
-  const handleInputQ_GoldQ = (event) => {
-    setQuantity({ ...quantity, qGold: event.target.value });
-  };*/
 
   //hesaplanan profitleri ve türlerini veri tabanına ekler
   function varliklarimaEkle(event) {
@@ -174,16 +124,19 @@ function ProfitProcesses() {
 
     clickProfit();
   }
-  /*
-  <p>Toplam Miktar (Dolar): {totalDolarValue}</p>
-  <p>Toplam Değer (Euro): {totalEuroValue}</p>
-  <p>Toplam Değer (Sterlin): {totalSterlinValue}</p>
-  <p>Toplam Değer (g gold): {totalG_GoldValue}</p>
-  <p>Toplam Değer (q gold): {totalQ_GoldValue}</p>
-*/
+
   return (
     <div>
-      <h1>Anlık Veriler</h1>
+      <Typography
+        fontFamily={"EB Garamond"}
+        variant="h6"
+        component="div"
+        fontSize={"26px"}
+        paddingBottom={"10px"}
+        sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+      >
+        ANLIK BİRİM FİYATLAR
+      </Typography>
 
       <div className="form1">
         <div className="card">
@@ -191,20 +144,20 @@ function ProfitProcesses() {
             <form>
               <div className="form-group">
                 <div className="form-items">
-                  gram altın bf:
+                  Gram Altın:
                   <input
                     type="number"
-                    placeholder="gram altın fiyatını giriniz"
+                    placeholder="Fiyat giriniz"
                     class="form-control"
                     onChange={handleInputG_Gold} //miktar yazılınca quantity set edilsin
                     name="gramAltin"
                   ></input>
                 </div>
                 <div className="form-items">
-                  çeyrek altın BF:
+                  Çeyrek Altın:
                   <input
                     type="number"
-                    placeholder="çeyrek altın giriniz"
+                    placeholder="Fiyat giriniz"
                     className="form-control"
                     onChange={handleInputQ_Gold}
                     name="ceyrekAltin"
@@ -212,30 +165,30 @@ function ProfitProcesses() {
                 </div>
 
                 <div className="form-items">
-                  Dolar BF:
+                  Dolar:
                   <input
                     type="text"
-                    placeholder="dolar fiyatı giriniz"
+                    placeholder="Fiyat giriniz"
                     className="form-control"
                     onChange={handleInputDolar}
                     name="dolar"
                   ></input>
                 </div>
                 <div className="form-items">
-                  euro BF:
+                  Euro:
                   <input
                     type="text"
-                    placeholder="tam altın giriniz"
+                    placeholder="Fiyat giriniz"
                     className="form-control"
                     onChange={handleInputEuro}
                     name="euro"
                   ></input>
                 </div>
                 <div className="form-items">
-                  Sterlin BF:
+                  Sterlin:
                   <input
                     type="text"
-                    placeholder="sterlin fiyat giriniz"
+                    placeholder="Fiyat giriniz"
                     className="form-control"
                     onChange={handleInputSterlin}
                     name="sterlin"
@@ -251,7 +204,7 @@ function ProfitProcesses() {
                     type="submit"
                     onClick={varliklarimaEkle}
                   >
-                    Kar Zarar Hesapla
+                    Kar-Zarar Hesapla
                   </Button>
                 </Grid>
               </Grid>
