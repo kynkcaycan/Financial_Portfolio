@@ -1,3 +1,7 @@
+
+
+![portfolio](https://github.com/kynkcaycan/Financial_Portfolio/assets/105385269/f7a00318-bd03-40c0-87b9-caf892887952)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
